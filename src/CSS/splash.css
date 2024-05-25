@@ -92,19 +92,19 @@
 .content .heading.hovered {
     transform: translateX(-110%);
 }
-
 .text {
     /* border: 1px solid black; */
     transition: transform 2s ease-in-out;
-    margin-top: 2rem;
+  
     background: rgb(131, 58, 180);
     background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 800;
     letter-spacing: -0.1rem;
 }
+
 
 .content .text.hovered {
     transform: translateX(-500%);
