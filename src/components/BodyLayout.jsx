@@ -28,7 +28,7 @@ const BodyLayout = () => {
 
   return (
     <>
-      {showShimmer && <Shimmer />}
+      {/* {showShimmer && <Shimmer />} */}
       <div className="body">
         <div className="flex">
           <p className="text-2xl font-bold opacity-70 text-black ml-9 flex-none relative top-2">
@@ -40,15 +40,17 @@ const BodyLayout = () => {
             setFilteredListOfRestaurant={setFilteredListOfRestaurant}
           />
         </div>
-        <div className="body">
-          <div className="res-container">
-            {filteredListOfRestaurant &&
-              filteredListOfRestaurant.map((restaurant) => (
-                <Link key={restaurant?.info?.id} to={`/menu/${restaurant?.info?.id}`}>
-                  <RestaurantCard resData={restaurant?.info} />
-                </Link>
-              ))}
-          </div>
+
+        <div className="m-6 grid lg:grid-cols-[repeat(4,_1fr)] grid-cols-[repeat(1,_1fr)] gap-4">
+          {filteredListOfRestaurant &&
+            filteredListOfRestaurant.map((restaurant) => (
+              <Link
+                key={restaurant?.info?.id}
+                to={`/menu/${restaurant?.info?.id}`}
+              >
+                <RestaurantCard resData={restaurant?.info} />
+              </Link>
+            ))}
         </div>
       </div>
     </>
