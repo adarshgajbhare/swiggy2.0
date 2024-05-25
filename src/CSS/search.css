@@ -1,0 +1,105 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+
+}
+
+.container .search {
+
+  margin-right: 20px;
+
+}
+
+/* .container h1 {
+  color: white;
+  letter-spacing: -0.01rem;
+  margin-right: auto;
+  margin-left: 20px;
+} */
+
+.subscribe {
+  /* width: 40%; */
+  display: inline-block;
+  outline: 0.01em solid rgba(199, 199, 206, 0.3);
+  margin-inline: auto;
+  background: white;
+  padding: 7px;
+  border-radius: 40px;
+  transition: 0.5s ease;
+}
+
+.subscribe:focus-within {
+  background: white;
+  box-shadow: 0 0px 25px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+}
+
+.subscribe .input {
+  background: inherit;
+  border: none;
+  color: black;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.subscribe .input:focus {
+  outline: none;
+}
+
+
+.subscribe .btn {
+  /* margin-left: 50px; */
+  border: none;
+  background: #fc8019;
+  border-radius: 30px;
+  padding: 15px 20px;
+  transition: 0.5s ease;
+
+}
+
+.subscribe .btn a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin: 0;
+  letter-spacing: 0.02rem;
+}
+
+.subscribe .btn .icon {
+  color: white;
+  margin-right: 5px;
+}
+
+.subscribe .btn .icon2 {
+  color: white;
+  margin-right: 5px;
+  display: none;
+}
+
+.subscribe .btn:active .icon {
+  display: none;
+}
+
+.subscribe .btn:active .icon2 {
+  color: white;
+  margin-right: 4px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+
+.rate-btn {
+ 
+  margin-right: 10px; 
+ 
+  padding: 0;
+  
+}
+

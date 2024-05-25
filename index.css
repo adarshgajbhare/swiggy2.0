@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components {
+    .btn-search {
+      display: inline-block;
+      outline: 0;
+      border: 0;
+      cursor: pointer;
+      transition: box-shadow 0.15s ease, transform 0.15s ease;
+      will-change: box-shadow, transform;
+      background: #FCFCFD;
+      box-shadow: 0px 2px 4px rgba(45, 35, 66, 0.4), 0px 7px 13px -3px rgba(45, 35, 66, 0.3), inset 0px -3px 0px #d6d6e7;
+      height: 48px;
+      padding: 0 32px;
+      font-size: 18px;
+      border-radius: 6px;
+      color: #36395a;
+      transition: box-shadow 0.15s ease, transform 0.15s ease;
+    }
+  
+    .btn-search:hover {
+      box-shadow: 0px 4px 8px rgba(45, 35, 66, 0.4), 0px 7px 13px -3px rgba(45, 35, 66, 0.3), inset 0px -3px 0px #d6d6e7;
+      transform: translateY(-2px);
+    }
+  
+    .btn-search:active {
+      box-shadow: inset 0px 3px 7px #d6d6e7;
+      transform: translateY(2px);
+    }
+  }
+  
