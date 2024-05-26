@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import {} from "../utils/constants";
 import React, { useContext, useState, useEffect } from "react";
-import "../CSS/style.css";
 import { Link } from "react-router-dom";
 import UserName from "./UserName";
 import { useSelector } from "react-redux";
@@ -40,7 +39,6 @@ const Header = ({
       restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
     );
 
-    //console.log(searchFilterList);
     if (searchFilter.length === 0) {
       setFilteredListOfRestaurant(searchFilterList);
     }
@@ -101,7 +99,6 @@ const Header = ({
           <IconX color="gray" size={26} strokeWidth={3} />
         </div>
 
-
         <div className=" px-5 bg-[#212529] mt-6 border pb-3 pt-4 border-black/50 rounded-full flex items-center overflow-hidden w-[85%] relative right-16  ">
           <input
             placeholder="Enter your city"
@@ -123,7 +120,6 @@ const Header = ({
             strokeWidth={3}
           />
         </div>
-
 
         <ul className="font-bold text-2xl leading-loose   ">
           <Link to="home">
@@ -260,7 +256,9 @@ const Header = ({
       <nav className="border-b border-white/15 px-6 fixed py-3 right-0 left-0 top-0 w-full bg-black z-50 justify-between  flex  items-center">
         <div className="flex items-center gap-6 mr-auto">
           <Link to="home" title="Home" aria-label="home" className="text">
-            <span className="font-black">Swiggify</span>
+            <span className="font-black text-3xl bg-gradient-to-r from-orange-300 via-orange-500 tracking-tight to-orange-600 bg-clip-text text-transparent">
+              Swiggify
+            </span>
           </Link>
 
           <div
@@ -276,8 +274,10 @@ const Header = ({
           </div>
         </div>
 
-        <div className="
-        lg:flex xl:flex 2xl:flex md:flex hidden items-center gap-8 text-xl font-bold">
+        <div
+          className="
+        lg:flex xl:flex 2xl:flex md:flex hidden items-center gap-8 text-xl font-bold"
+        >
           <form>
             <div className=" flex items-center rounded-full py-2 px-4  bg-[#252525]">
               <input

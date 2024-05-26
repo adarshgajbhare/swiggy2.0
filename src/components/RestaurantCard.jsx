@@ -1,13 +1,15 @@
+/* eslint-disable no-unused-vars */
 import {
-  IconPoint,
   IconPointFilled,
   IconStarFilled,
 } from "@tabler/icons-react";
 import { CARD_IMG } from "../utils/constants";
 import AddToCartButton from "./AddToCartButton";
 const RestaurantCard = ({ resData }) => {
-  const { name, cuisines, avgRating, sla, cloudinaryImageId, costForTwo } =
+  const { name, cuisines, avgRating, sla, cloudinaryImageId, costForTwo, aggregatedDiscountInfoV3 } =
     resData || {};
+
+   
 
   const cardStyle = {
     backgroundImage: `url(${
@@ -16,42 +18,52 @@ const RestaurantCard = ({ resData }) => {
   };
 
   return (
-    <div className="h-96 relative rounded-md overflow-hidden shadow-[0px_1px_3px_rgba(0,0,0,1)]">
-      <div className="absolute flex inset-0 size-full bg-gradient-to-t from-black/90 from-25%">
-        <div className=" px-3 pb-3 mt-auto w-full">
-          <p className="text-3xl/none font-bold tracking-tight text-white">
+    <div className="h-72 w-60 flex flex-col gap-3 relative rounded-3xl overflow-hidden">
+      <div className="imgb relative h-44  rounded-3xl overflow-hidden " style={cardStyle}>
+
+      <div className="absolute flex inset-0 size-full bg-gradient-to-t from-black/75 from-5%">
+       <p className="absolute bottom-2 left-4 w-full text-white font-black text-xl">{aggregatedDiscountInfoV3?.header} {aggregatedDiscountInfoV3?.subHeader ? aggregatedDiscountInfoV3?.subHeader : "10% OFF UPTO ₹40"} </p>
+       </div>
+ 
+      </div>
+      
+      <div className=" px-2 ">
+          <p className="text-xl  line-clamp-1 font-bold tracking-tight text-white">
             {name}
           </p>
-          <p className="text-sm my-1 inline-block bg-[#252525] rounded-full font-bold px-2 pt-[1px] pb-[1px] w-fit  text-gray-500">
-            {cuisines && cuisines.length > 0
-              ? cuisines.join(", ").split(",")[0]
-              : "N/A"}
-          </p>
-          <p className="text-xl font-bold mb-[1px] text-gray-300">
-            {costForTwo.split(" ")[0]}{" "}
-            <span className="text-xs italic text-gray-400">for two</span>{" "}
-          </p>
-
-          <p className="text-base/none absolute border border-green-500 top-3 right-3 bg-[#b7e4c7] rounded-lg w-fit px-2 py-1 font-bold flex items-center text-gray-400">
-            <IconStarFilled
-              className="inline-block mr-1 "
-              size={14}
-              strokeWidth={2}
-              color="#2b9348"
-            />
-            <span className="text-base/none font-bold text-green-500">
+          <p className="text-sm/none  w-fit font-bold flex items-center text-gray-300">
+            <span className="bg-green-600 -ml-1.5 p-1.5 relative bottom-[1px] scale-[0.6] rounded-full">
+              <IconStarFilled
+                className="inline-block  "
+                size={16}
+                strokeWidth={2}
+                color="white"
+              />
+            </span>
+            <span className="text-sm/none flex items-center font-bold text-gray-300">
               {avgRating}
+              <IconPointFilled size={10} color="gray" className="mx-[2px]" />{" "}
+            {sla?.slaString.split(" ")[0]} mins
             </span>
           </p>
 
-          <p className="text-sm/none w-fit absolute bottom-3   right-2  flex   font-semibold text-gray-500 items-center bg-[#252525] rounded-full px-2 pt-1.5 pb-1">
-            {sla?.lastMileTravelString}{" "}
-            <IconPointFilled size={12} color="gray" />{" "}
-            {sla?.slaString.split(" ")[0]} mins
+          <p className="text-base/none  inline-block relative bottom-1  rounded-full font-bold tracking-tighter w-fit  text-orange-400">
+            {cuisines && cuisines.length > 0
+              ? cuisines.join(", ").toLowerCase().split(",")[0]
+              : "N/A"}
+          </p>
+          <p className="text-lg font-bold mb-[1px] relative bottom-1 text-gray-300">
+            {costForTwo.split(" ")[0]}{" "}
+            <span className="text-xs/none italic text-gray-500/75">for two</span>{" "}
+          </p>
+
+     
+          <p className="text-base/none w-fit   flex   font-bold text-gray-500/60 items-center ">
+          
+
           </p>
         </div>
-      </div>
-      <div className="imgb" style={cardStyle}></div>
+      
       <AddToCartButton />
     </div>
   );
