@@ -29,11 +29,9 @@ const BodyLayout = () => {
   return (
     <>
       {/* {showShimmer && <Shimmer />} */}
-      <div className="body">
-        <div className="flex">
-          <p className="text-2xl font-bold opacity-70 text-black ml-9 flex-none relative top-2">
-            Top restaurants near you
-          </p>
+      <div className="bg-black overflow-y-scroll">
+        <div className="flex mt-10 ml-6">
+       
           <Search
             filteredListOfRestaurant={filteredListOfRestaurant}
             resData={data}
@@ -41,7 +39,7 @@ const BodyLayout = () => {
           />
         </div>
 
-        <div className="m-6 grid lg:grid-cols-[repeat(4,_1fr)] grid-cols-[repeat(1,_1fr)] gap-4">
+        <div className="mx-6 grid lg:grid-cols-[repeat(4,_1fr)] grid-cols-[repeat(1,_1fr)] gap-4">
           {filteredListOfRestaurant &&
             filteredListOfRestaurant.map((restaurant) => (
               <Link
