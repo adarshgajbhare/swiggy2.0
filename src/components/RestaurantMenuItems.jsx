@@ -18,7 +18,7 @@ const RestaurantMenuItems = ({ items }) => {
     }
   };
   return (
-    <div className="">
+    <div className="bg-black">
       {items &&
         items.map((menuItem) => {
           // Calculate the price value
@@ -29,32 +29,30 @@ const RestaurantMenuItems = ({ items }) => {
           return (
             <div
               key={menuItem.card && menuItem.card.info.id}
-              className="p-2 m-2 border-b-2   border-gray-400  text-left flex justify-between"
+              className=" border-b  py-6   border-gray-50/10  text-left flex  items-center justify-between"
             >
-              <div className="w-1/2 ">
-                <div className="p-2">
-                  <span className="font-bold">{menuItem.card.info.name}</span>
-                  <p className="font-bold mt-1 text-black opacity-70">
-                    ₹ {priceValue}
+              <div className="w-2/3 px-4">
+                <div className="flex flex-col gap-1">
+                  <span className="font-bold text-2xl text-gray-50 ">{menuItem.card.info.name}</span>
+                  <p className="font-bold text-xl text-gray-50">
+                    ₹{priceValue}
                   </p>
-                  <p className="text-base mt-2 text-black opacity-70 w-80">
+                  <p className="text-lg lg:w-2/3 xl:w-2/3 2xl:w-2/3  md:w-2/3  text-gray-400">
                     {menuItem.card.info.description}
                   </p>
                 </div>
               </div>
-              <div className="container-ib p-4 w-3/12 relative">
+              <div className="relative lg:h-52 xl:h-52 md:h-52 2xl:h-52 size-32 grow  rounded-lg w-1/3">
                 <img
-                  className="container-i w-full relative h-32 rounded-lg"
+               
+                  className="size-full object-cover object-center"
                   src={CARD_IMG + menuItem.card.info.imageId}
                 />
-                <div className="container-btn">
-                  <button
-                    className="w-20 h-8 absolute bottom-1 ml-2 left-24 transform -translate-x-1/2 bg-green-500 text-white border-none cursor-pointer m-0 p-1rem outline-none rounded-md font-bold text-xs shadow-md transition duration-200 ease-out hover:shadow-lg hover:text-green-500 hover:bg-white"
+                <button
                   onClick={()  => handleAddItem(menuItem )}
-                  >
-                    ADD
-                  </button>
-                </div>
+                className="absolute bg-green-600 px-6 py-1 text-lg font-bold rounded-full -bottom-2 z-10 lg:left-[100px] xl:left-[100px] md:left-[100px] left-8">
+ADD
+                </button>
               </div>
             </div>
           );
