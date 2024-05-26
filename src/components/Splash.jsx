@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../CSS/splash.css';
 import { Link } from 'react-router-dom';
 
 const Splash = () => {

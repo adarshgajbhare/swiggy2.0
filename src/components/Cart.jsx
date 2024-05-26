@@ -8,6 +8,7 @@ import {
   selectItemsInCart,
 } from "../store/cartSlice";
 import { Link } from "react-router-dom";
+import { IconMinus, IconPlus } from "@tabler/icons-react";
 const Cart = () => {
   const CartItem = useSelector((store) => store.cart.items);
 
@@ -53,140 +54,96 @@ const Cart = () => {
     );
   }
   return (
-    <div className="  ">
-   
-      {/* <div className="flex justify-between">
-        <h1 className="text-2xl font-bold uppercase text-black">CART</h1>
-
-        <div className="">
-          {" "}
-          <button
-            className=" mt-10   uppercase font-bold text-lg bg-orange-600  text-center rounded-lg  p-2 text-white m-2
-          hover:text-orange-600 hover:bg-white hover:border-orange-500 border-1
-          "
-            onClick={() => {
-              dispatch(clearCart());
-            }}
-          >
-            CLEAR CART
-          </button>
-        </div>
-      </div> */}
-
-      <div className="outer  grid grid-cols-2 gap-4 h-[70vh] w-[70vw] mx-auto">
-        <div className="menu-item   overflow-x-scroll  ">
+    <div className="bg-black  h-screen overflow-auto    ">
+      <div className=" flex w-4/5 mt-28 mx-auto items-center  h-3/4 overflow-hidden">
+        <div className=" overflow-y-scroll  overflow-x-hidden  w-2/3 ">
           {Array.isArray(CartItem) &&
             CartItem.map((menuItem) => (
               <div
-                className="flex gap-10 justify-start mb-4"
+                className=" flex items-center gap-10  mb-4"
                 key={menuItem.card && menuItem.card.info.id}
               >
-                <div className="image  inline-block ">
-                  <img
-                    className="w-[164px] h-[164px]  object-cover block rounded-md aspect-square"
-                    src={CARD_IMG + menuItem.card.info.imageId}
-                  />
-                </div>
-
-                <div className=" w-[80%]  ">
-                  <span className="text-lg font-semibold">
+                <img
+                  className="size-40   object-cover object-center rounded-2xl aspect-square"
+                  src={CARD_IMG + menuItem.card.info.imageId}
+                />
+                <div className="flex flex-col">
+                  <span className="text-lg text-white font-bold">
                     {menuItem.card.info.name}
                   </span>
-                  <p className="line-clamp-1">
-                    {menuItem.card.info.description}
-                  </p>
-                  <p className="font-bold mt-1 text-black inline-block opacity-70">
+                  <p className="w-4/5 font-bold text-base text-gray-500">{menuItem.card.info.description}</p>
+                  <p className="font-bold text-lg text-gray-500 inline-block ">
                     ₹
                     {menuItem.card.info.price
                       ? (menuItem.card.info.price / 100) * menuItem.count
                       : (menuItem.card.info.defaultPrice / 100) *
-                        menuItem.count}{" "}
+                        menuItem.count}
                   </p>
-
-                  <p className=" inline-block ml-2">
+                  <p className=" inline-block">
                     (
-                    {
-                      (
-                        menuItem.card.info.price?.toFixed(2) / 100 ||
-                        menuItem.card.info.defaultPrice?.toFixed(2) / 100)
-                    }
-                    {" X "} {menuItem.count})
+                    {menuItem.card.info.price?.toFixed(2) / 100 ||
+                      menuItem.card.info.defaultPrice?.toFixed(2) / 100}
+                    {" x "} {menuItem.count})
                   </p>
-
-                  <div className="buttons flex justify-between  mt-9 ">
-                    <div className=" justify-start">
-                      <button
-                        disabled={menuItem.count <= 1}
-                        className="bg-orange-500 disabled:bg-orange-500/50 disabled:cursor-not-allowed text-white font-bold w-8 h-8 rounded-md"
-                        onClick={() => handleDecreaseItem(menuItem)}
-                      >
-                        -
-                      </button>
-
-                      <p className="font-bold inline-block  text-black w-8 h-8 ml-6">
-                        {menuItem.count}
-                      </p>
-                      <button
-                        className="bg-orange-500 text-white font-bold w-8 h-8 rounded-md"
-                        onClick={() => handleIncreaseItem(menuItem)}
-                      >
-                        +
-                      </button>
-                    </div>
-                    <div className="">
-                      <button
-                        className="border ml-20 border-orange-500  text-xs font-bold text-white  bg-orange-500 p-2 px-4 rounded-md
-                          hover:text-orange-500  hover:bg-white hover:border-orange-500  "
-                        onClick={() => {
-                          dispatch(removeItem(menuItem));
-                        }}
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  </div>
                 </div>
+             
+                  <div className=" flex items-center">
+                    <button
+                      disabled={menuItem.count <= 1}
+                      className="bg-orange-500 disabled:bg-orange-500/50 disabled:cursor-not-allowed text-white font-bold p-2 rounded-md"
+                      onClick={() => handleDecreaseItem(menuItem)}
+                    >
+                      <IconMinus size={20} color="white" strokeWidth={4}/>
+                    </button>
+                    <p className="font-bold mx-2 inline-block  text-white p-2 ">
+                      {menuItem.count}
+                    </p>
+                    <button
+                      className="bg-orange-500 text-white font-bold p-2 rounded-md"
+                      onClick={() => handleIncreaseItem(menuItem)}
+                    >
+                     <IconPlus size={20} color="white" strokeWidth={4}/>
+                    </button>
+                  </div>
+               
+          
               </div>
             ))}
         </div>
-
-        <div className="order-page shadow-md md:m-0   p-4">
-          <h2 className="text-xl font-bold border-b pb-4 mb-6">
-            Order Summary
-          </h2>
-          <div className=" leading-10 font-bold">
+        <div className="w-1/3 shadow-md md:m-0   p-4">
+          <h2 className="text-xl text-white font-bold text-white border-b pb-4 mb-6">Order Summary</h2>
+          <div className=" leading-10 font-bold text-white">
             <div className="price-item flex mb-6 justify-between">
               <p className="text-gray-600">Price ( {CartItem.length} items)</p>
-              <p className="font-bold text-lg">₹ {totalPrice.toFixed(2)} </p>
+              <p className="font-bold text-white text-lg">₹ {totalPrice.toFixed(2)} </p>
             </div>
             <div className="discount text-gray-600 flex mb-6 justify-between">
               <p className="">Discount (10%) </p>
-              <p className="font-bold text-black text-lg">
+              <p className="font-bold text-white text-black text-lg">
                 - ₹ {discountPrice.toFixed(2)}
               </p>
             </div>
             <div className="delivery text-gray-600 flex mb-6 justify-between">
               <p> Delivery charges (2%) </p>
-              <p className="font-bold  text-black text-lg">
+              <p className="font-bold text-white text-lg">
                 ₹ {deliveryFees.toFixed(2)}
               </p>
             </div>
             <div className="reward border-b">
-              <p className="mb-6 text-black">
+              <p className="mb-6 text-white">
                 You'll save ₹{discountPrice.toFixed(2)} on this order 🎉
               </p>
             </div>
           </div>
-
-          <div className="total-amt flex text-2xl font-bold mt-8 justify-between mb-4 ">
+          <div className="total-amt flex text-2xl font-bold text-white mt-8 justify-between mb-4 ">
             <p className=" "> Total Amount </p>
             <p className="text-orange-500 ">₹{finalAmount.toFixed(2)}</p>
           </div>
           <div className="place-order ">
             <button
-              className="w-full block border uppercase font-bold border-orange-500 text-lg
-              text-center p-4 rounded-md 
-              hover:text-white   text-orange-500  hover:bg-orange-600  bg-white   "
+              className="w-full block border uppercase font-bold text-white border-orange-500 text-lg
+                text-center p-4 rounded-md
+                hover:text-white   bg-orange-600   "
             >
               Place order
             </button>
@@ -198,3 +155,7 @@ const Cart = () => {
 };
 
 export default Cart;
+
+// onClick={() => {
+//   dispatch(removeItem(menuItem));
+// }}

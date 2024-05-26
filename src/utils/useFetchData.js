@@ -11,6 +11,8 @@ const useFetchData = (api) => {
         const response = await fetch(api);
         const json = await response.json();
 
+        // console.log(reponse, "response")
+
         if (json) {
           const processedData = checkJsonData(json);
           setData(processedData);
@@ -28,7 +30,16 @@ const useFetchData = (api) => {
             throw new Error("GitHub file request failed");
           }
           const localJson = await localResponse.json();
+          console.log(localJson, "localJson")
+  const bannerName = localJson?.data?.cards[0]?.card?.card?.header?.title;
+  const bannerImg = localJson?.data?.cards[0]?.card?.card?.header?.imageGridCards?.info;
+
+
+// console.log(bannerName, "bnsdg")
+// console.log(bannerImg, "sadf")
+
           if (localJson) {
+
             const processedLocalData = checkJsonData(localJson);
             setData(processedLocalData);
           } else {
@@ -45,6 +56,7 @@ const useFetchData = (api) => {
 
     fetchData();
   }, [api]);
+
 
   const checkJsonData = (jsonData) => {
     const allRestaurantsData = [];
