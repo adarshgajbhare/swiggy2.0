@@ -45,9 +45,9 @@ const RestaurantMenus = () => {
     );
 
   return (
-    <div className="bg-black overflow-y-scroll min-h-dvh">
-      <div className="flex relative flex-col gap-1 bg-black border-b border-white/20 rounded-xl overflow-hidden  p-4 text-white  lg:w-1/2 xl:w-1/2 2xl:w-1/2 md:w-1/2 mx-auto mt-32 mb-10">
-      <div className="absolute inset-0 z-[2] size-full overflow-hidden bg-black/50 filter backdrop-blur-lg">
+    <div className="bg-[#101010] overflow-y-scroll min-h-dvh">
+      <div className="flex relative flex-col gap-1 bg-[#101010] border-b border-white/20 rounded-xl overflow-hidden  p-4 text-white  lg:w-1/2 xl:w-1/2 2xl:w-1/2 md:w-1/2 mx-auto mt-32 mb-10">
+      <div className="absolute inset-0 z-[2] size-full overflow-hidden bg-[#101010]/50 filter backdrop-blur-lg">
         </div>      
         <div className="absolute inset-0 size-full overflow-hidden">
     <img src={CARD_IMG + cloudinaryImageId} alt="" className="size-full object-cover object-center" />

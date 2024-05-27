@@ -36,7 +36,7 @@ const BodyLayout = () => {
   return (
     <>
       {/* {showShimmer && <Shimmer />} */}
-      <div className="bg-black ">
+      <div className="bg-[#101010] ">
         <div className="flex mt-10 ml-6">
        
           <Search

@@ -11,7 +11,7 @@ const Splash = () => {
   return (
     <div className="container-splash">
       <div className={`content ${isTextShifted ? 'text-shifted' : ''}`} data-tilt>
-        <div className="heading">
+        <div className="heading mt-96 text-black">
           <h1>Are you hungry?</h1>
         </div>
         <div className="text">
