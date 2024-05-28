@@ -1,18 +1,9 @@
-import React, { useState, lazy, Suspense, useEffect } from "react";
+import { useState, lazy, Suspense, useEffect } from "react";
 import ReactDOM from "react-dom/client";
+import { Outlet, RouterProvider, createBrowserRouter, useLocation } from "react-router-dom";
+import { Provider } from "react-redux";
 import Header from "./components/Header";
 import BodyLayout from "./components/BodyLayout";
-import Footer from "./components/Footer";
-
-// import About from "./components/About";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Outlet,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
 import RouterError from "./components/RouterError";
 import Contact from "./components/Contact";
 import Cart from "./components/Cart";
@@ -20,10 +11,10 @@ import Offers from "./components/Offers";
 import ResMenu from "./components/RestaurantMenus";
 import Splash from "./components/Splash";
 import UserName from "./components/UserName";
-import { Provider } from "react-redux";
 import appStore from "./store/appStore";
-import MyLocation from "./utils/MyLocation";
 import { getCityAPI } from "./utils/constants";
+import Login from "./components/Login";
+
 const About = lazy(() => import("./components/About"));
 
 const App = () => {
@@ -40,33 +31,28 @@ const App = () => {
   const handleAPIKeyChange = (newAPIKey, latitude, longitude) => {
     setAPI_KEY(newAPIKey);
   };
+
+  const location = useLocation();
+
   return (
-   
     <Provider store={appStore}>
-    
       <UserName.Provider value={{ loggedUser: name, setName }}>
         <div className="app">
-       
-          <Header onAPIKeyChange={handleAPIKeyChange} />
-
+          {location.pathname !== "/" && <Header onAPIKeyChange={handleAPIKeyChange} />}
           <Outlet context={api} />
-
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </UserName.Provider>
     </Provider>
   );
 };
+
 const appRoute = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     errorElement: <RouterError />,
     children: [
-      {
-        path: "/",
-        element: <Splash />,
-      },
       {
         path: "/home",
         element: <BodyLayout />,
@@ -95,9 +81,13 @@ const appRoute = createBrowserRouter([
         path: "/menu/:resId",
         element: <ResMenu />,
       },
+      {
+        path: "/",
+        element: <Login />,
+      },
     ],
   },
 ]);
-const root = ReactDOM.createRoot(document.getElementById("root"));
 
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={appRoute} />);
