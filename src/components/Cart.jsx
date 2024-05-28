@@ -6,8 +6,6 @@ import { IconMinus, IconPlus } from "@tabler/icons-react";
 import { useContext } from "react";
 import UserContext from "../utils/UserContext";
 const Cart = () => {
-
-
   const CartItem = useSelector((store) => store.cart.items);
 
   const dispatch = useDispatch();
@@ -69,9 +67,7 @@ const Cart = () => {
                   <p className="text-lg text-white font-bold">
                     {menuItem.card.info.name}
                   </p>
-                  <p className="font-bold text-sm w-4/5 line-clamp-3  text-gray-500">
-                    {menuItem.card.info.description}
-                  </p>
+
                   <div className="flex mt-auto items-center gap-2">
                     <p className="font-bold inline-block text-lg text-gray-500 ">
                       ₹
@@ -116,7 +112,9 @@ const Cart = () => {
           </h2>
           <div className="grow mt-8 flex flex-col gap-4 font-bold text-white">
             <div className="price-item flex mb-6 justify-between items-baseline">
-              <p className="text-gray-400 text-base font-bold">Price{" "}({CartItem.length} items)</p>
+              <p className="text-gray-400 text-base font-bold">
+                Price ({CartItem.length} items)
+              </p>
               <p className="font-bold text-white text-2xl">
                 ₹ {totalPrice.toFixed(2)}{" "}
               </p>
@@ -141,7 +139,9 @@ const Cart = () => {
           </div>
           <div className="mt-auto  flex text-white justify-between items-baseline my-4 text-base font-bold">
             <p className=" "> Total Amount </p>
-            <p className="text-orange-500 text-2xl">₹{finalAmount.toFixed(2)}</p>
+            <p className="text-orange-500 text-2xl">
+              ₹{finalAmount.toFixed(2)}
+            </p>
           </div>
           <div className=" ">
             <button

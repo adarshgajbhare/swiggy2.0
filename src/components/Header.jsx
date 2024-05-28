@@ -13,13 +13,26 @@ import {
 } from "@tabler/icons-react";
 import UserContext from "../utils/UserContext";
 
+
+
+const sortingOptions = [
+  { id: 1, label: "Profile", value: "profile",  },
+  { id: 2, label: "Order", value: "order",  },
+  { id: 3, label: "Logout", value: "logout",  },
+  { id: 4, label: "Favourite", value: "fav",  },
+];
+
+
+
 const Header = ({
   onAPIKeyChange,
   resData,
   setFilteredListOfRestaurant,
 }) => {
-  const { user } = useContext(UserContext);
-  console.log("user from header", user);
+const { user } = useContext(UserContext);
+  const [openSort, setOpenSort] = useState(false);
+
+  
 
   const [locationName, setLocationName] = useState("Pune");
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -34,6 +47,11 @@ const Header = ({
 
   const [cityName, setCityName] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const handleSort = () => {
+    setOpenSort((prev) => !prev);
+  };
+
 
   const searchFilter = () => {
     const searchFilterList = resData.filter((restaurant) =>
@@ -86,6 +104,7 @@ const Header = ({
 
   return (
     <>
+   
       <div
         className={`fixed text-[#0008]  h-screen lg:w-1/4 z-[999] xl:w-1/4 2xl:1/4 md:w-1/2 w-full left-0 top-0  bg-[#050505]  ${
           isLocationBarVisible ? " -translate-x-[100%] " : ""
@@ -100,7 +119,7 @@ const Header = ({
           <IconX color="gray" size={26} strokeWidth={3} />
         </div>
 
-        <div className=" px-5 bg-[#212529] mt-6 border pb-3 pt-4 border-black/50 rounded-full flex items-center overflow-hidden w-[85%] relative right-16  ">
+        <div className=" px-5 bg-[#212529] mt-6 border pb-2 pt-3 border-black/50 rounded-full flex items-center overflow-hidden w-[80%] relative right-0  ">
           <input
             placeholder="Enter your city"
             className="focus:outline-none placeholder:text-gray-500 bg-transparent  placeholder:text-xl placeholder:font-bold w-full    "
@@ -302,7 +321,9 @@ const Header = ({
           <Link to="/contact" title="contact" className="  text-white">
             Contact
           </Link>
-          <p className=" flex items-center gap-1   cursor-pointer">
+          <p 
+          onClick={handleSort}
+          className="relative flex items-center gap-1   cursor-pointer">
             <IconUserCircle
               size={26}
               strokeWidth={2}
@@ -310,6 +331,21 @@ const Header = ({
               className="inline-block"
             />
             <span className="text-white"> {user?.displayName}</span>
+            <div
+            className={`${
+              openSort ? "block" : "hidden"
+            } absolute top-10 right-2 z-[999] rounded-md border border-black/10 bg-white shadow-2xl`}
+          >
+            {sortingOptions.map((option) => (
+              <button
+                key={option.id}
+                onClick={option.func}
+                className="font-sfb block  w-full min-w-fit whitespace-nowrap border-b border-black/10 px-4 py-2 text-left text-sm/none text-gray-500 hover:bg-gray-200"
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
           </p>
           <Link to="/cart" title="cart" className=" group   text-white">
             <div>
