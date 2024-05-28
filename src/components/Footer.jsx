@@ -48,11 +48,13 @@ const Footer = () => {
   // export default Footer;
 
   return (
+   <>
     <div className=" flex text-black justify-center shadow-2xl ">
       <div className=" items-center justify-center ">
         Made with ❤️ by Adarsh Gajbhare
       </div>
     </div>
+   </>
   );
 };
 export default Footer;

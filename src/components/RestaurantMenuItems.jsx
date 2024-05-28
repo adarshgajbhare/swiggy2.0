@@ -18,7 +18,7 @@ const RestaurantMenuItems = ({ items }) => {
     }
   };
   return (
-    <div className="bg-white">
+    <div className="bg-[#050505]">
       {items &&
         items.map((menuItem) => {
           // Calculate the price value

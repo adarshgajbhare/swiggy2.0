@@ -18,7 +18,7 @@ const RestaurantCard = ({ resData }) => {
   };
 
   return (
-    <div className="h-72 w-60 flex flex-col gap-3 relative rounded-3xl overflow-hidden">
+    <div className=" lg:w-60 xl:w-60 2xl:w-60  flex flex-col gap-3 relative rounded-3xl overflow-hidden">
       <div className="imgb relative h-44  rounded-3xl overflow-hidden " style={cardStyle}>
 
       <div className="absolute flex inset-0 size-full bg-gradient-to-t from-black/75 from-5%">
@@ -40,7 +40,7 @@ const RestaurantCard = ({ resData }) => {
                 color="white"
               />
             </span>
-            <span className="text-sm/none flex items-center font-bold text-gray-300">
+            <span className="text-base/none flex items-center font-bold text-gray-300">
               {avgRating}
               <IconPointFilled size={10} color="gray" className="mx-[2px]" />{" "}
             {sla?.slaString.split(" ")[0]} mins
