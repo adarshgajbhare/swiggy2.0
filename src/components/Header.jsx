@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import {} from "../utils/constants";
-import React, { useContext, useState, useEffect } from "react";
+import  { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import UserName from "./UserName";
 import { useSelector } from "react-redux";
@@ -8,22 +8,18 @@ import { getCityAPI } from "../utils/constants";
 import {
   IconLocation,
   IconSearch,
-  IconUser,
-  IconUserCircle,
+    IconUserCircle,
   IconX,
 } from "@tabler/icons-react";
 import UserContext from "../utils/UserContext";
 
 const Header = ({
   onAPIKeyChange,
-  latitude,
-  longitude,
   resData,
   setFilteredListOfRestaurant,
 }) => {
-
   const { user } = useContext(UserContext);
-  console.log("user from cart", user);
+  console.log("user from header", user);
 
   const [locationName, setLocationName] = useState("Pune");
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -313,7 +309,7 @@ const Header = ({
               color="white"
               className="inline-block"
             />
-            <span className="text-white"> {user.displayName}</span>
+            <span className="text-white"> {user?.displayName}</span>
           </p>
           <Link to="/cart" title="cart" className=" group   text-white">
             <div>
