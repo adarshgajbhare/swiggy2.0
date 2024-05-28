@@ -56,7 +56,7 @@ const Search = ({ resData, setFilteredListOfRestaurant }) => {
           <div
             className={`${
               openSort ? "block" : "hidden"
-            } absolute top-12 right-2 rounded-md border border-black/10 bg-[#101010]/50 filter backdrop-blur-md shadow-2xl`}
+            } absolute top-12 right-2 rounded-md border border-black/10 bg-[#050505]/50 filter backdrop-blur-md shadow-2xl`}
           >
             {sortingOptions.map((option) => (
               <button

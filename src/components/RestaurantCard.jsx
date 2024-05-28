@@ -18,7 +18,7 @@ const RestaurantCard = ({ resData }) => {
   };
 
   return (
-    <div className=" w-60 flex flex-col gap-3 relative rounded-3xl overflow-hidden">
+    <div className=" lg:w-60 xl:w-60 2xl:w-60  flex flex-col gap-3 relative rounded-3xl overflow-hidden">
       <div className="imgb relative h-44  rounded-3xl overflow-hidden " style={cardStyle}>
 
       <div className="absolute flex inset-0 size-full bg-gradient-to-t from-black/75 from-5%">

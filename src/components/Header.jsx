@@ -86,7 +86,7 @@ const Header = ({
   return (
     <>
       <div
-        className={`fixed text-[#0008] z-[999] h-screen lg:w-1/4 xl:w-1/4 2xl:1/4 md:w-1/2 w-full left-0 top-0  bg-[#101010]  ${
+        className={`fixed text-[#0008]  h-screen lg:w-1/4 z-[999] xl:w-1/4 2xl:1/4 md:w-1/2 w-full left-0 top-0  bg-[#050505]  ${
           isLocationBarVisible ? " -translate-x-[100%] " : ""
         } transition-all duration-500 ease-in-out   rounded-r-lg `}
       >
@@ -253,7 +253,7 @@ const Header = ({
           </li>
         </ul>
       </div>
-      <nav className="border-b border-white/15 px-6 fixed py-3 right-0 left-0 top-0 w-full bg-[#101010] z-50 justify-between  flex  items-center">
+      <nav className="border-b border-white/15 px-6 fixed py-3 right-0 left-0 top-0 w-full bg-[#050505] z-50 justify-between  flex  items-center">
         <div className="flex items-center gap-6 mr-auto">
           <Link to="home" title="Home" aria-label="home" className="text">
             <span className="font-black text-3xl bg-gradient-to-r from-orange-300 via-orange-500 tracking-tight to-orange-600 bg-clip-text text-transparent">

@@ -48,7 +48,7 @@ const Cart = () => {
     );
   }
   return (
-    <div className="bg-[#101010] overflow-hidden max-h-screen  ">
+    <div className="bg-[#050505] overflow-hidden max-h-screen  ">
       <div className=" flex w-3/4 my-28 mx-auto   max-h-[75vh] ">
         <div className="flex flex-col gap-10  pr-6 pt-4 overflow-y-scroll w-[80%]  max-h-[75vh]">
           {Array.isArray(CartItem) &&

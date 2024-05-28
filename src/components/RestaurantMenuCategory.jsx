@@ -12,7 +12,7 @@ const [showItems, setShowItems] = useState(false);
   return (
     <div>
       <div className="lg:w-1/2 md:w-1/2 xl:w-1/2 2xl:w-1/2  m-auto mx-auto my-4  text-center ">
-        <div className=" flex bg-[#101010] justify-between cursor-pointer"onClick={handleMenuShow} >
+        <div className=" flex bg-[#050505] justify-between cursor-pointer"onClick={handleMenuShow} >
           <span className="font-bold pl-4 text-3xl mb-3">
             {" "}
             {data?.data?.title} ({data?.data?.itemCards.length})
