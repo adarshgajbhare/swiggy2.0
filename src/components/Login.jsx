@@ -1,4 +1,4 @@
-import  { useState, useRef } from "react";
+import  { useState, useRef, useContext } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -11,8 +11,10 @@ import {
 
 } from "react-router-dom";
 import { auth } from "../firbase/firbase";
+import UserContext from "../utils/UserContext";
 
 const Login = () => {
+  const { user, setUser } = useContext(UserContext);
   const [isSignUp, setIsSignUp] = useState(false);
   const email = useRef(null);
   const password = useRef(null);
@@ -34,6 +36,8 @@ const Login = () => {
             updateProfile(user, {
               displayName: username.current.value
             })
+            setUser(user); // Update user state in UserContext
+            localStorage.setItem('loggedInUser', JSON.stringify(user)); 
             navigate("/home");
             console.log(user);
           }
@@ -52,6 +56,8 @@ const Login = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           if (user) {
+            setUser(user); // Update user state in UserContext
+            localStorage.setItem('loggedInUser', JSON.stringify(user)); 
             console.log("Logged in user", user);
             navigate("/home");
            
@@ -64,6 +70,7 @@ const Login = () => {
         });
     }
   };
+
 
   return (
     <div className="bg-black h-screen flex items-center justify-center ">

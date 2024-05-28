@@ -14,6 +14,7 @@ import UserName from "./components/UserName";
 import appStore from "./store/appStore";
 import { getCityAPI } from "./utils/constants";
 import Login from "./components/Login";
+import { UserProvider } from "./utils/UserContext";
 
 const About = lazy(() => import("./components/About"));
 
@@ -36,6 +37,7 @@ const App = () => {
 
   return (
     <Provider store={appStore}>
+      <UserProvider>
       <UserName.Provider value={{ loggedUser: name, setName }}>
         <div className="app">
           {location.pathname !== "/" && <Header onAPIKeyChange={handleAPIKeyChange} />}
@@ -43,6 +45,7 @@ const App = () => {
           {/* <Footer /> */}
         </div>
       </UserName.Provider>
+      </UserProvider>
     </Provider>
   );
 };

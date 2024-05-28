@@ -12,6 +12,7 @@ import {
   IconUserCircle,
   IconX,
 } from "@tabler/icons-react";
+import UserContext from "../utils/UserContext";
 
 const Header = ({
   onAPIKeyChange,
@@ -20,6 +21,10 @@ const Header = ({
   resData,
   setFilteredListOfRestaurant,
 }) => {
+
+  const { user } = useContext(UserContext);
+  console.log("user from cart", user);
+
   const [locationName, setLocationName] = useState("Pune");
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isLocationBarVisible, setIsLocationBarVisible] = useState(true);
@@ -308,7 +313,7 @@ const Header = ({
               color="white"
               className="inline-block"
             />
-            <span className="text-white"> {loggedUser}</span>
+            <span className="text-white"> {user.displayName}</span>
           </p>
           <Link to="/cart" title="cart" className=" group   text-white">
             <div>
