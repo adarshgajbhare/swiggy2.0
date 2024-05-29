@@ -1,7 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import { CARD_IMG } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { decreaseItemCart, increaseItemCart } from "../store/cartSlice";
+import {
+  decreaseItemCart,
+  increaseItemCart,
+  removeItem,
+} from "../store/cartSlice";
 import { Link } from "react-router-dom";
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 const Cart = () => {
@@ -15,6 +19,9 @@ const Cart = () => {
   const finalAmount = totalPrice + deliveryFees - discountPrice;
 
   const handleDecreaseItem = (menuItem) => {
+    if (menuItem.count <= 1 && menuItem.count == 1) {
+      dispatch(removeItem(menuItem));
+    }
     dispatch(decreaseItemCart({ id: menuItem.card.info.id }));
   };
 
@@ -56,8 +63,7 @@ const Cart = () => {
             CartItem.map((menuItem) => (
               <div
                 className="min-h-36 flex gap-4  items-stretch overflow-y-hidden  w-full"
-                key={menuItem.card && menuItem.card.info.id}
-              >
+                key={menuItem.card && menuItem.card.info.id}>
                 <img
                   className="size-36 object-cover object-center rounded-2xl aspect-square"
                   src={CARD_IMG + menuItem.card.info.imageId}
@@ -86,10 +92,8 @@ const Cart = () => {
 
                 <div className=" flex self-end   items-center">
                   <button
-                    disabled={menuItem.count <= 1}
                     className="bg-orange-500 disabled:bg-orange-500/50 disabled:cursor-not-allowed text-white font-bold p-2 rounded-md"
-                    onClick={() => handleDecreaseItem(menuItem)}
-                  >
+                    onClick={() => handleDecreaseItem(menuItem)}>
                     <IconMinus size={20} color="white" strokeWidth={4} />
                   </button>
                   <p className="font-bold mx-2 inline-block  text-white p-2 ">
@@ -97,8 +101,7 @@ const Cart = () => {
                   </p>
                   <button
                     className="bg-orange-500 text-white font-bold p-2 rounded-md"
-                    onClick={() => handleIncreaseItem(menuItem)}
-                  >
+                    onClick={() => handleIncreaseItem(menuItem)}>
                     <IconPlus size={20} color="white" strokeWidth={4} />
                   </button>
                 </div>
@@ -146,8 +149,7 @@ const Cart = () => {
             <button
               className="w-full block border uppercase font-bold text-white border-orange-500 text-lg
                 text-center p-4 rounded-md
-                hover:text-white   bg-orange-600   "
-            >
+                hover:text-white   bg-orange-600   ">
               Place order
             </button>
           </div>
@@ -158,7 +160,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-// onClick={() => {
-//   dispatch(removeItem(menuItem));
-// }}
