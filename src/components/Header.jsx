@@ -11,6 +11,7 @@ import {
 import UserContext from "../utils/UserContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../firbase/firbase";
+import SearchContext from "../utils/SearchContext";
 
 const Header = ({
   onAPIKeyChange,
@@ -19,6 +20,7 @@ const Header = ({
 }) => {
 
   const naviator = useNavigate();
+  const {setSearch} = useContext(SearchContext);
   const { user } = useContext(UserContext);
   const [openSort, setOpenSort] = useState(false);
 
@@ -58,17 +60,7 @@ const Header = ({
     { id: 4, label: "Favourite", value: "fav" },
   ];
 
-  const searchFilter = () => {
-    const searchFilterList = resData.filter((restaurant) =>
-      restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
-    );
-
-    if (searchFilterList.length === 0) {
-      console.log("nothing found");
-    }
-    setFilteredListOfRestaurant(searchFilterList);
-  };
-
+  
   const HandleShimmer = () => {
     setShowShimmer(true);
 
@@ -285,13 +277,16 @@ const Header = ({
               <input
                 type="text"
                 placeholder="Search for restaurants"
-                className="outline-none bg-transparent  placeholder:text-gray-500/70 font-semibold text-lg"
+                className="outline-none bg-transparent text-white  placeholder:text-gray-500/70 font-semibold text-lg"
                 value={searchText}
                 onChange={(e) => {
                   setSearchText(e.target.value);
+                  setSearch(e.target.value)
                 }}
               />
-              <IconSearch color="gray" size={20} strokeWidth={3} />
+              <IconSearch 
+               className="cursor-pointer"
+              color="gray" size={20} strokeWidth={3} />
             </div>
           </form>
           <Link to="/home" title="home" className="   text-white">

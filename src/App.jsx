@@ -1,6 +1,11 @@
 import { useState, lazy, Suspense, useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { Outlet, RouterProvider, createBrowserRouter, useLocation } from "react-router-dom";
+import {
+  Outlet,
+  RouterProvider,
+  createBrowserRouter,
+  useLocation,
+} from "react-router-dom";
 import { Provider } from "react-redux";
 import Header from "./components/Header";
 import BodyLayout from "./components/BodyLayout";
@@ -14,6 +19,7 @@ import appStore from "./store/appStore";
 import { getCityAPI } from "./utils/constants";
 import Login from "./components/Login";
 import { UserProvider } from "./utils/UserContext";
+import { SearchProvider } from "./utils/SearchContext";
 
 const About = lazy(() => import("./components/About"));
 
@@ -37,13 +43,17 @@ const App = () => {
   return (
     <Provider store={appStore}>
       <UserProvider>
-      <UserName.Provider value={{ loggedUser: name, setName }}>
-        <div className="app">
-          {location.pathname !== "/" && <Header onAPIKeyChange={handleAPIKeyChange} />}
-          <Outlet context={api} />
-          {/* <Footer /> */}
-        </div>
-      </UserName.Provider>
+        <SearchProvider>
+          <UserName.Provider value={{ loggedUser: name, setName }}>
+            <div className="app">
+              {location.pathname !== "/" && (
+                <Header onAPIKeyChange={handleAPIKeyChange} />
+              )}
+              <Outlet context={api} />
+              {/* <Footer /> */}
+            </div>
+          </UserName.Provider>
+        </SearchProvider>
       </UserProvider>
     </Provider>
   );
@@ -57,7 +67,7 @@ const appRoute = createBrowserRouter([
     children: [
       {
         path: "/home",
-        element:  <BodyLayout />,
+        element: <BodyLayout />,
       },
       {
         path: "/about",
