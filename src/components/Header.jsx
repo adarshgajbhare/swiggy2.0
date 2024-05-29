@@ -1,44 +1,30 @@
-/* eslint-disable react/prop-types */
-import {} from "../utils/constants";
-import  { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import UserName from "./UserName";
+import { useContext, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getCityAPI } from "../utils/constants";
 import {
   IconLocation,
   IconSearch,
-    IconUserCircle,
+  IconUserCircle,
   IconX,
 } from "@tabler/icons-react";
 import UserContext from "../utils/UserContext";
-
-
-
-const sortingOptions = [
-  { id: 1, label: "Profile", value: "profile",  },
-  { id: 2, label: "Order", value: "order",  },
-  { id: 3, label: "Logout", value: "logout",  },
-  { id: 4, label: "Favourite", value: "fav",  },
-];
-
-
+import { signOut } from "firebase/auth";
+import { auth } from "../firbase/firbase";
 
 const Header = ({
   onAPIKeyChange,
   resData,
   setFilteredListOfRestaurant,
 }) => {
-const { user } = useContext(UserContext);
+
+  const naviator = useNavigate();
+  const { user } = useContext(UserContext);
   const [openSort, setOpenSort] = useState(false);
 
-  
-
   const [locationName, setLocationName] = useState("Pune");
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isLocationBarVisible, setIsLocationBarVisible] = useState(true);
-  const [showShimmer, setShowShimmer] = useState(false);
-  const { loggedUser } = useContext(UserName);
+  const [, setShowShimmer] = useState(false);
   const [searchText, setSearchText] = useState("");
 
   const ItemCount = useSelector((store) => store.cart.items);
@@ -46,21 +32,41 @@ const { user } = useContext(UserContext);
   const [position, setPosition] = useState({ latitude: null, longitude: null });
 
   const [cityName, setCityName] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
 
   const handleSort = () => {
     setOpenSort((prev) => !prev);
   };
 
+  const handleLogout = () => {
+    console.log("User logged out");
+    
+    signOut(auth).then(() => {
+     console.log("user logged out successfully!!");
+     naviator("/")
+     window.location.reload();
+    }).catch((error) => {
+      console.log(error.message);
+    });
+    
+  };
+
+  const sortingOptions = [
+    { id: 1, label: "Profile", value: "profile" },
+    { id: 2, label: "Order", value: "order" },
+    { id: 3, label: "Logout", value: "logout", func: handleLogout },
+    { id: 4, label: "Favourite", value: "fav" },
+  ];
 
   const searchFilter = () => {
     const searchFilterList = resData.filter((restaurant) =>
       restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
     );
 
-    if (searchFilter.length === 0) {
-      setFilteredListOfRestaurant(searchFilterList);
+    if (searchFilterList.length === 0) {
+      console.log("nothing found");
     }
+    setFilteredListOfRestaurant(searchFilterList);
   };
 
   const HandleShimmer = () => {
@@ -70,6 +76,7 @@ const { user } = useContext(UserContext);
       setShowShimmer(false);
     }, 2000);
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -104,7 +111,6 @@ const { user } = useContext(UserContext);
 
   return (
     <>
-   
       <div
         className={`fixed text-[#0008]  h-screen lg:w-1/4 z-[999] xl:w-1/4 2xl:1/4 md:w-1/2 w-full left-0 top-0  bg-[#050505]  ${
           isLocationBarVisible ? " -translate-x-[100%] " : ""
@@ -145,12 +151,8 @@ const { user } = useContext(UserContext);
           <Link to="home">
             <p
               onClick={() => {
-                {
-                  document.querySelector("body").style.backgroundColor =
-                    "white";
-                  document.querySelector("body").style.transitionDuration =
-                    "1s";
-                }
+                document.querySelector("body").style.backgroundColor = "white";
+                document.querySelector("body").style.transitionDuration = "1s";
                 onAPIKeyChange(getCityAPI(18.516726, 73.856255));
                 setLocationName("Pune");
                 setIsLocationBarVisible((prev) => !prev);
@@ -165,13 +167,9 @@ const { user } = useContext(UserContext);
               <Link to="home">
                 <p
                   onClick={() => {
-                    {
-                      document.querySelector("body").style.backgroundColor =
-                        "white";
-                      document.querySelector("body").style.transitionDuration =
-                        "1s";
-                    }
-                    HandleShimmer;
+                    document.querySelector("body").style.backgroundColor = "white";
+                    document.querySelector("body").style.transitionDuration = "1s";
+                    HandleShimmer();
                     onAPIKeyChange(getCityAPI(19.0759837, 72.8776559));
                     setLocationName("Mumbai");
                     setIsLocationBarVisible((prev) => !prev);
@@ -187,12 +185,8 @@ const { user } = useContext(UserContext);
             <div
               className=""
               onClick={() => {
-                {
-                  document.querySelector("body").style.backgroundColor =
-                    "white";
-                  document.querySelector("body").style.transitionDuration =
-                    "3s";
-                }
+                document.querySelector("body").style.backgroundColor = "white";
+                document.querySelector("body").style.transitionDuration = "3s";
                 onAPIKeyChange(getCityAPI(12.9715987, 77.5945627));
                 setLocationName("Bangalore");
                 setIsLocationBarVisible((prev) => !prev);
@@ -209,13 +203,9 @@ const { user } = useContext(UserContext);
             <div
               className=""
               onClick={() => {
-                {
-                  document.querySelector("body").style.backgroundColor =
-                    "white";
-                  document.querySelector("body").style.transitionDuration =
-                    "1s";
-                }
-                onAPIKeyChange(getCityAPI((lat = 19.1485289), 77.3191471));
+                document.querySelector("body").style.backgroundColor = "white";
+                document.querySelector("body").style.transitionDuration = "1s";
+                onAPIKeyChange(getCityAPI(19.1485289, 77.3191471));
                 setLocationName("Nanded");
                 setIsLocationBarVisible((prev) => !prev);
               }}
@@ -231,12 +221,8 @@ const { user } = useContext(UserContext);
             <div
               className=""
               onClick={() => {
-                {
-                  document.querySelector("body").style.backgroundColor =
-                    "white";
-                  document.querySelector("body").style.transitionDuration =
-                    "1s";
-                }
+                document.querySelector("body").style.backgroundColor = "white";
+                document.querySelector("body").style.transitionDuration = "1s";
                 onAPIKeyChange(getCityAPI(28.7040592, 77.10249019999999));
                 setLocationName("Delhi");
                 setIsLocationBarVisible((prev) => !prev);
@@ -253,12 +239,8 @@ const { user } = useContext(UserContext);
             <div
               className=""
               onClick={() => {
-                {
-                  document.querySelector("body").style.backgroundColor =
-                    "white";
-                  document.querySelector("body").style.transitionDuration =
-                    "1s";
-                }
+                document.querySelector("body").style.backgroundColor = "white";
+                document.querySelector("body").style.transitionDuration = "1s";
                 onAPIKeyChange(getCityAPI(17.385044, 78.486671));
                 setLocationName("Hyderabad");
                 setIsLocationBarVisible((prev) => !prev);

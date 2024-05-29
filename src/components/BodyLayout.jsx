@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
@@ -6,12 +7,12 @@ import Search from "./Search";
 import useFetchData from "../utils/useFetchData";
 import useFetchBanner from "../utils/useFetchBanner";
 import { CARD_IMG } from "../utils/constants";
-import { IconArrowLeft, IconArrowRight, IconPointFilled, IconStarFilled } from "@tabler/icons-react";
+import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 /* eslint-disable no-unused-vars */
 import {} from "@tabler/icons-react";
 import AddToCartButton from "./AddToCartButton";
 
-const BodyLayout = ({ resData }) => {
+const BodyLayout = () => {
   const api = useOutletContext();
   const { data, loading } = useFetchData(api);
   const [filteredListOfRestaurant, setFilteredListOfRestaurant] = useState([]);

@@ -9,7 +9,6 @@ import Contact from "./components/Contact";
 import Cart from "./components/Cart";
 import Offers from "./components/Offers";
 import ResMenu from "./components/RestaurantMenus";
-import Splash from "./components/Splash";
 import UserName from "./components/UserName";
 import appStore from "./store/appStore";
 import { getCityAPI } from "./utils/constants";
@@ -58,7 +57,7 @@ const appRoute = createBrowserRouter([
     children: [
       {
         path: "/home",
-        element: <BodyLayout />,
+        element:  <BodyLayout />,
       },
       {
         path: "/about",

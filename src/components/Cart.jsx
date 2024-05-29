@@ -1,10 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 import { CARD_IMG } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { decreaseItemCart, increaseItemCart } from "../store/cartSlice";
 import { Link } from "react-router-dom";
 import { IconMinus, IconPlus } from "@tabler/icons-react";
-import { useContext } from "react";
-import UserContext from "../utils/UserContext";
 const Cart = () => {
   const CartItem = useSelector((store) => store.cart.items);
 
