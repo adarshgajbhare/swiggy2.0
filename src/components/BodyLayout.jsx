@@ -81,7 +81,7 @@ const BodyLayout = () => {
           </div>
         </h1>
 
-        <div className="flex relative z-50 lg:w-4/5 xl:w-4/5 2xl:w-4/5  mt-4 rounded-xl mx-auto whitespace-nowrap flex-nowrap gap-6 overflow-x-scroll">
+        <div className="flex cursor-pointer relative z-50 lg:w-4/5 xl:w-4/5 2xl:w-4/5  mt-4 rounded-xl mx-auto whitespace-nowrap flex-nowrap gap-6 overflow-x-scroll">
           {dataBanner &&
             dataBanner.map((banner) => (
               <div
