@@ -16,6 +16,7 @@ const Login = () => {
   const password = useRef(null);
   const username = useRef(null);
   const navigate = useNavigate();
+  console.log("login wolfyyyyyyyyyyyyy")
 
   const handleAuth = async () => {
     if (isSignUp) {

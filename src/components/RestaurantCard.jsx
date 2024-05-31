@@ -63,8 +63,6 @@ const RestaurantCard = ({ resData }) => {
 
           </p>
         </div>
-      
-      <AddToCartButton />
     </div>
   );
 };

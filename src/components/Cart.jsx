@@ -31,24 +31,24 @@ const Cart = () => {
 
   if (CartItem.length === 0) {
     return (
-      <div className="">
+      <div className=" bg-[#E8E9EA] min-h-dvh flex flex-col">
         <div className=" justify-center items-center flex ">
           <img
-            className=" w-80 h-60 items-center"
+            className=" h-96 items-center mt-12 "
             src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0"
             alt=""
           />
         </div>
-        <div className="justify-center items-center flex mt-[24] font-bold text-2xl text-[#5356655b]  text-#535665]">
+        <div className="justify-center items-center flex mt-4 font-bold text-4xl  text-[#535665c4]  text-#535665]">
           {" "}
           Your cart is empty{" "}
         </div>
-        <div className="mt-2 flex text-[#7e808c5f] items-center justify-center">
+        <div className="mt-4 w-2/3 mx-auto flex text-xl text-center font-bold  text-[#7e808ca6] items-center justify-center">
           You can go to home page to view more restaurants
         </div>
         <Link to="/home">
           {" "}
-          <div className="  mt-8  p-4 text-bold  inline-block  ml-[43%]  uppercase bg-orange-500 text-white font-semibold cursor-pointer text-sm text-center hover:shadow-2xl">
+          <div className="  mt-14  p-4 text-bold  inline-block  w-4/5 ml-11 uppercase bg-orange-500 text-white font-bold cursor-pointer text-lg text-center hover:shadow-2xl rounded-xl whitespace-nowrap  lg:w-1/5 lg:ml-[625px]">
             See restaurants near you
           </div>
         </Link>{" "}
