@@ -28,7 +28,7 @@ const Contact = () => {
 
   // Function called on submit that uses emailjs to send email of valid contact form
   const onSubmit = async (data) => {
-    // Destrcture data object
+    // Destructure data object
     const { name, email, subject, message } = data;
     try {
       // Disable form while processing submission
@@ -42,6 +42,9 @@ const Contact = () => {
         message,
       };
 
+      // Log the data being sent
+      console.log("Sending data:", templateParams);
+
       // Use emailjs to email contact form data
       await emailjs.send(
         import.meta.env.VITE_SERVICE_ID,
@@ -53,7 +56,7 @@ const Contact = () => {
       // Display success alert
       toggleAlert("Form submission was successful!", "success");
     } catch (e) {
-      console.error(e);
+      console.error("Error sending email:", e);
       // Display error alert
       toggleAlert("Uh oh. Something went wrong.", "danger");
     } finally {
@@ -65,7 +68,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="Contact grid place-items-center min-h-dvh bg-black ">
+    <div className="Contact grid place-items-center min-h-dvh bg-black">
       <div className="container border-black border lg:w-1/2 md:w-1/2 xl:w-1/2 2xl:w-1/2">
         <div className="row">
           <div className="col-12 text-center">
@@ -90,7 +93,7 @@ const Contact = () => {
                           message: "Please use 30 characters or less",
                         },
                       })}
-                      className=" w-4/5 py-3 text-gray-500 px-4 border border-black text-2xl font-bold focus:outline-none rounded-lg bg-[#101010] mb-3.5 "
+                      className=" w-4/5 py-3 text-gray-500 px-4 border border-black text-2xl font-bold focus:outline-none rounded-lg bg-[#101010] mb-3.5"
                       placeholder="Name"></input>
                     {errors.name && (
                       <span className="errorMessage">
@@ -132,7 +135,7 @@ const Contact = () => {
                           message: "Subject cannot exceed 75 characters",
                         },
                       })}
-                      className=" w-4/5 py-3 text-gray-500 px-4 border border-black text-2xl font-bold focus:outline-none rounded-lg bg-[#101010] mb-3.5 "
+                      className=" w-4/5 py-3 text-gray-500 px-4 border border-black text-2xl font-bold focus:outline-none rounded-lg bg-[#101010] mb-3.5"
                       placeholder="Subject"></input>
                     {errors.subject && (
                       <span className="errorMessage">
@@ -150,7 +153,7 @@ const Contact = () => {
                       {...register("message", {
                         required: true,
                       })}
-                      className=" w-4/5 py-3 text-gray-500 px-4 border border-black text-2xl font-bold focus:outline-none rounded-lg bg-[#101010] mb-3.5 "
+                      className=" w-4/5 py-3 text-gray-500 px-4 border border-black text-2xl font-bold focus:outline-none rounded-lg bg-[#101010] mb-3.5"
                       placeholder="Message"></textarea>
                     {errors.message && (
                       <span className="errorMessage">
@@ -161,7 +164,7 @@ const Contact = () => {
                 </div>
 
                 <button
-                  className=" w-4/5 py-3 text-gray-500 px-4 border border-black text-2xl font-bold focus:outline-none rounded-lg bg-orange-600 text-white mb-3.5 "
+                  className=" w-4/5 py-3 text-gray-500 px-4 border border-black text-2xl font-bold focus:outline-none rounded-lg bg-orange-600 text-white mb-3.5"
                   disabled={disabled}
                   type="submit">
                   Submit
