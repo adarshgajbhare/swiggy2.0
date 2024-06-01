@@ -15,7 +15,8 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firbase/firbase";
 import SearchContext from "../utils/SearchContext";
 
-const Header = ({ onAPIKeyChange, resData, setFilteredListOfRestaurant }) => {
+
+const Header = ({ onAPIKeyChange }) => {
   const naviator = useNavigate();
   const { setSearch } = useContext(SearchContext);
   const { user } = useContext(UserContext);
@@ -260,7 +261,7 @@ const Header = ({ onAPIKeyChange, resData, setFilteredListOfRestaurant }) => {
             aria-label="home"
             className="text  mr-32">
             <span className="font-black text-xl  md:text-2xl xl:text-2xl lg:text-2xl 2xl:text-2xl bg-gradient-to-r from-orange-300 via-orange-500 tracking-tight to-orange-600 bg-clip-text text-transparent">
-              EatHub
+              EatNow
             </span>
           </Link>
         </div>

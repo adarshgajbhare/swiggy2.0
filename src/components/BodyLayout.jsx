@@ -51,17 +51,20 @@ const BodyLayout = () => {
 
     return () => clearTimeout(shimmerTimeout);
   }, [api]);
+
   var settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToShow: 6,
+    slidesToScroll: 6,
+    
   };
+
   return (
     <>
       <div className="bg-[#050505] overflow-auto">
-        <div className="fixed top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 size-[1000px] bg-orange-500/80  filter blur-[200px] rounded-full"></div>
+        <div className="fixed top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 size-[1000px] bg-orange-500/80  filter blur-[200px] rounded-full "></div>
         <h1
           className="text-white relative  w-full flex items-center mt-40 font-bold lg:text-3xl md:xl:text-3xl  xl:text-3xl text-2xl  mb-8 lg:ml-40 xl:ml-40 2xl:ml-40
         px-2"
@@ -69,22 +72,21 @@ const BodyLayout = () => {
           <span className="inline-block">What's on your mind</span>
         </h1>
 
-        <div className="flex     cursor-pointer whitespace-nowrap flex-nowrap gap-6 overflow-x-scroll px-2relative lg:w-4/5 xl:w-4/5 2xl:w-4/5 mt-4 rounded-xl mx-auto px-2 ">
-          {/* <Slider {...settings} slidesToShow={13}> */}
+        <div className="flex   border-2 border-red-400 flex-col  cursor-pointer whitespace-nowrap flex-nowrap gap-6 overflow-x-scroll px-2 relative lg:w-4/5 xl:w-4/5 2xl:w-4/5 mt-4 rounded-xl mx-auto ">
+          <Slider {...settings} slidesToShow={5}>
             {dataBanner &&
               dataBanner.map((banner) => (
                 <div
                   key={banner?.id}
-                  className="shrink-0 relative w-40 overflow-hidden rounded-3xl  "
+                  className="shrink-0 relative  h-52 max-w-52  overflow-hidden rounded-3xl  "
                 >
                   <img
                     src={CARD_IMG + banner?.imageId}
-                    alt=""
                     className="w-full h-full object-center object-cover aspect-square"
                   />
                 </div>
               ))}
-          {/* </Slider> */}
+          </Slider>
         </div>
         <div className="text-white relative w-full flex items-center  font-bold lg:text-3xl md:xl:text-3xl  xl:text-3xl text-2xl mt-16 mb-8 lg:ml-40 xl:ml-40 2xl:ml-40 px-2">
           <span className="inline-block">Top restaurants near you</span>

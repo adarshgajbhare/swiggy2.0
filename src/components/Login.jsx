@@ -17,6 +17,7 @@ const Login = () => {
   const password = useRef(null);
   const username = useRef(null);
   const navigate = useNavigate();
+
   const notify = () =>
     toast(
       "Please you access-control-allow-origin extension to see the real time data from Swiggy.."
@@ -68,7 +69,7 @@ const Login = () => {
         <div className=" lg:w-1/2 xl:w-1/2 md:w-1/2 2xl:w-1/2 w-full shrink-0 grid place-items-center bg-[#050505]">
           <div className=" gap-8 w-3/5   flex flex-col">
             <span className="text-center mb-6  py-2 font-black text-5xl bg-gradient-to-r from-orange-300 via-orange-500 tracking-tight to-orange-600 bg-clip-text text-transparent">
-              Swiggify
+              EatNow{" "}
             </span>
             <h1 className="text-2xl font-semibold text-left text-white">
               {isSignUp ? "Sign up" : "Login"}
@@ -96,7 +97,8 @@ const Login = () => {
             <div>
               <button
                 className="bg-orange-500 py-3 px-4 w-full text-white font-bold text-lg rounded-lg"
-                onClick={handleAuth}>
+                onClick={handleAuth}
+              >
                 {isSignUp ? "Sign up" : "Login"}
               </button>
             </div>
@@ -107,7 +109,8 @@ const Login = () => {
                     Already a member?{" "}
                     <span
                       className="underline text-blue-500 cursor-pointer"
-                      onClick={() => setIsSignUp(false)}>
+                      onClick={() => setIsSignUp(false)}
+                    >
                       Login here
                     </span>
                   </>
@@ -116,7 +119,8 @@ const Login = () => {
                     Not a member?{" "}
                     <span
                       className="underline text-blue-500 cursor-pointer"
-                      onClick={() => setIsSignUp(true)}>
+                      onClick={() => setIsSignUp(true)}
+                    >
                       Sign up here
                     </span>
                   </>
@@ -134,7 +138,19 @@ const Login = () => {
           />
         </div>
       </div>
-      <ToastContainer style={{ right: "560px",  }} />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition="Flip"
+      />
       {notify()}
     </>
   );
