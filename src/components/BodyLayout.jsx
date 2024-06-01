@@ -10,7 +10,9 @@ import { CARD_IMG } from "../utils/constants";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 /* eslint-disable no-unused-vars */
 import {} from "@tabler/icons-react";
-import AddToCartButton from "./AddToCartButton";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const BodyLayout = () => {
   const api = useOutletContext();
@@ -49,57 +51,45 @@ const BodyLayout = () => {
 
     return () => clearTimeout(shimmerTimeout);
   }, [api]);
-
+  var settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 2,
+  };
   return (
     <>
-      {/* {showShimmer && <Shimmer />} */}
       <div className="bg-[#050505] overflow-auto">
         <div className="fixed top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 size-[1000px] bg-orange-500/80  filter blur-[200px] rounded-full"></div>
-
         <h1
           className="text-white relative  w-full flex items-center mt-40 font-bold lg:text-3xl md:xl:text-3xl  xl:text-3xl text-2xl  mb-8 lg:ml-40 xl:ml-40 2xl:ml-40
-        px-2">
+        px-2"
+        >
           <span className="inline-block">What's on your mind</span>
-
-          <div className="ml-auto relative  flex items-center gap-2">
-            <span className="inline-block size-10 grid place-items-center  bg-gray-100 rounded-full">
-              <IconArrowLeft
-                size={26}
-                strokeWidth={2}
-                color="black"
-                className="inline-block"
-              />
-            </span>
-            <span className="inline-block size-10 grid place-items-center  bg-gray-100 rounded-full">
-              <IconArrowRight
-                size={26}
-                strokeWidth={2}
-                color="black"
-                className="inline-block"
-              />
-            </span>
-          </div>
         </h1>
 
-        <div className="flex cursor-pointer relative  lg:w-4/5 xl:w-4/5 2xl:w-4/5  mt-4 rounded-xl mx-auto whitespace-nowrap flex-nowrap gap-6 overflow-x-scroll px-2">
-          {dataBanner &&
-            dataBanner.map((banner) => (
-              <div
-                key={banner?.id}
-                className="shrink-0 relative  w-40 overflow-hidden rounded-3xl">
-                <img
-                  src={CARD_IMG + banner?.imageId}
-                  alt=""
-                  className="size-full object-center object-cover aspect-square"
-                />
-              </div>
-            ))}
+        <div className="flex     cursor-pointer whitespace-nowrap flex-nowrap gap-6 overflow-x-scroll px-2relative lg:w-4/5 xl:w-4/5 2xl:w-4/5 mt-4 rounded-xl mx-auto px-2 ">
+          {/* <Slider {...settings} slidesToShow={13}> */}
+            {dataBanner &&
+              dataBanner.map((banner) => (
+                <div
+                  key={banner?.id}
+                  className="shrink-0 relative w-40 overflow-hidden rounded-3xl  "
+                >
+                  <img
+                    src={CARD_IMG + banner?.imageId}
+                    alt=""
+                    className="w-full h-full object-center object-cover aspect-square"
+                  />
+                </div>
+              ))}
+          {/* </Slider> */}
         </div>
-
         <div className="text-white relative w-full flex items-center  font-bold lg:text-3xl md:xl:text-3xl  xl:text-3xl text-2xl mt-16 mb-8 lg:ml-40 xl:ml-40 2xl:ml-40 px-2">
           <span className="inline-block">Top restaurants near you</span>
 
-          <div className="ml-auto flex items-center gap-2">
+          {/* <div className="ml-auto flex items-center gap-2">
             <span className="inline-block size-10 grid place-items-center  bg-gray-100 rounded-full">
               <IconArrowLeft
                 size={26}
@@ -116,7 +106,7 @@ const BodyLayout = () => {
                 className="inline-block"
               />
             </span>
-          </div>
+          </div> */}
         </div>
 
         <div className="flex relative px-2  lg:w-4/5 xl:w-4/5 2xl:w-4/5  mt-4 rounded-xl mx-auto whitespace-nowrap flex-nowrap gap-6 overflow-x-scroll">
@@ -124,7 +114,8 @@ const BodyLayout = () => {
             filteredListOfRestaurant.map((restaurant) => (
               <Link
                 key={restaurant?.info?.id}
-                to={`/menu/${restaurant?.info?.id}`}>
+                to={`/menu/${restaurant?.info?.id}`}
+              >
                 <RestaurantCard resData={restaurant?.info} />
               </Link>
             ))}
@@ -149,7 +140,8 @@ const BodyLayout = () => {
             filteredListOfRestaurant.map((restaurant) => (
               <Link
                 key={restaurant?.info?.id}
-                to={`/menu/${restaurant?.info?.id}`}>
+                to={`/menu/${restaurant?.info?.id}`}
+              >
                 <RestaurantCard resData={restaurant?.info} />
               </Link>
             ))}

@@ -105,8 +105,9 @@ const Header = ({ onAPIKeyChange, resData, setFilteredListOfRestaurant }) => {
   return (
     <>
       <div
-        className={`fixed text-[#0008]  h-screen lg:w-1/4 z-[999] xl:w-1/4 2xl:1/4 md:w-1/2 w-full left-0 top-0  bg-[#050505]  ${isLocationBarVisible ? " -translate-x-[100%] " : ""
-          } transition-all duration-500 ease-in-out   rounded-r-lg`}>
+        className={`fixed text-[#0008]  h-screen lg:w-1/4 z-[999] xl:w-1/4 2xl:1/4 md:w-1/2 w-full left-0 top-0  bg-[#050505]  ${
+          isLocationBarVisible ? " -translate-x-[100%] " : ""
+        } transition-all duration-500 ease-in-out   rounded-r-lg`}>
         <div
           className="bg-[#202020] w-fit p-3 absolute cursor-pointer top-7 right-2 rounded-full"
           onClick={() => {
@@ -259,13 +260,14 @@ const Header = ({ onAPIKeyChange, resData, setFilteredListOfRestaurant }) => {
             aria-label="home"
             className="text  mr-32">
             <span className="font-black text-xl  md:text-2xl xl:text-2xl lg:text-2xl 2xl:text-2xl bg-gradient-to-r from-orange-300 via-orange-500 tracking-tight to-orange-600 bg-clip-text text-transparent">
-              EatNow
+              EatHub
             </span>
           </Link>
         </div>
         <div
-          className={`${menuOpen ? "translate-x-0 " : "translate-x-[100%]"
-            } fixed inset-0  transition-all duration-500 ease-in-out size-full bg-[#050505] z-[99999]`}>
+          className={`${
+            menuOpen ? "translate-x-0 " : "translate-x-[100%]"
+          } fixed inset-0  transition-all duration-500 ease-in-out size-full bg-[#050505] z-[99999]`}>
           <IconX
             size={30}
             strokeWidth={3}
@@ -334,8 +336,9 @@ const Header = ({ onAPIKeyChange, resData, setFilteredListOfRestaurant }) => {
                 {user?.displayName}
               </span>
               <div
-                className={`${openSort ? "block" : "hidden"
-                  } absolute top-10 right-2 z-[999] rounded-md border border-black/10 bg-white shadow-2xl`}>
+                className={`${
+                  openSort ? "block" : "hidden"
+                } absolute top-10 right-2 z-[999] rounded-md border border-black/10 bg-white shadow-2xl`}>
                 {sortingOptions.map((option) => (
                   <button
                     key={option.id}
@@ -409,8 +412,9 @@ const Header = ({ onAPIKeyChange, resData, setFilteredListOfRestaurant }) => {
             />
             <span className="text-white"> {user?.displayName}</span>
             <div
-              className={`${openSort ? "block" : "hidden"
-                } absolute top-10 right-2 z-[999] rounded-md border border-black/10 bg-white shadow-2xl`}>
+              className={`${
+                openSort ? "block" : "hidden"
+              } absolute top-10 right-2 z-[999] rounded-md border border-black/10 bg-white shadow-2xl`}>
               {sortingOptions.map((option) => (
                 <button
                   key={option.id}
