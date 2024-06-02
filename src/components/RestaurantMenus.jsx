@@ -5,7 +5,13 @@ import Shimmer from "./Shimmer";
 import { CARD_IMG } from "../utils/constants";
 import useRestaurantMenus from "../utils/useRestaurantMenus";
 import RestaurantMenuCategory from "./RestaurantMenuCategory";
-import { IconStarFilled } from "@tabler/icons-react";
+import {
+  IconChevronLeft,
+  IconPoint,
+  IconPointFilled,
+  IconSearch,
+  IconStarFilled,
+} from "@tabler/icons-react";
 import SearchContext from "../utils/SearchContext";
 const RestaurantMenus = () => {
   const [isExpanded, setExpanded] = useState(false);
@@ -44,38 +50,86 @@ const RestaurantMenus = () => {
     );
 
   return (
-    <div className="min-h-dvh overflow-y-scroll bg-[#050505]">
-      <div className="relative mx-auto mb-10 mt-32 flex flex-col gap-1 overflow-hidden rounded-xl border-b border-white/20 bg-[#050505] p-4 text-white md:w-1/2 lg:w-1/2 xl:w-1/2 2xl:w-1/2">
-        <div className="absolute inset-0 z-[2] size-full overflow-hidden bg-[#050505]/50 filter backdrop-blur-lg"></div>
-        <div className="absolute inset-0 size-full overflow-hidden">
-          <img
-            src={CARD_IMG + cloudinaryImageId}
-            alt=""
-            className="size-full object-cover object-center"
-          />
-        </div>
-        <p className="z-10 text-6xl font-extrabold text-orange-500">{name}</p>
-        <p className="z-10 pl-1 text-2xl font-bold text-gray-300">
-          {cuisines.join(", ")}
-        </p>
-        <p className="z-10 pl-1 text-2xl font-bold text-gray-300">{city}</p>{" "}
-        <p className="z-10 pl-1 text-2xl font-bold text-gray-300">
-          {costForTwoMessage}
-        </p>
-        <p className="absolute bottom-3 right-2 z-10 flex items-center gap-1 rounded-full border border-white/10 px-4 py-1 text-xl font-extrabold text-gray-50">
-          <IconStarFilled size={18} color="yellow" className="inline-block" />
-          {avgRating}
-        </p>{" "}
-      </div>
-
-      <div className="Menu-items text-white">
-        {category &&
-          category.map((category, index) => (
-            <RestaurantMenuCategory
-              key={category?.card?.card.title}
-              data={category?.card?.card}
+    <div className="min-h-dvh overflow-y-scroll bg-[#020202]">
+      <div className="relative mx-auto w-full lg:w-1/2 xl:w-1/2 2xl:w-1/2">
+        <div className="fixed left-0 right-0 top-0 z-50 lg:w-3/4 xl:w-3/4 2xl:w-3/4 lg:left-1/2 lg:-translate-x-1/2 xl:left-1/2 xl:-translate-x-1/2 2xl:left-1/2 2xl:-translate-x-1/2 rounded-b-3xl border-b border-white/10 bg-black/70 py-2 filter backdrop-blur-lg">
+          <div className="m-2 flex items-center rounded-full bg-[#202020] p-2.5">
+            <IconChevronLeft
+              size={24}
+              color="gray"
+              className="mr-1 inline-block scale-150"
             />
-          ))}
+            <input
+              type="text"
+              className="inline-block w-full bg-transparent font-semibold placeholder:text-gray-500 text-gray-200 focus:outline-none"
+              placeholder={`Search in ${name} in ${city}`}
+            />
+            <IconSearch
+              size={24}
+              color="gray"
+              className="ml-auto inline-block cursor-pointer"
+            />
+          </div>
+          <div className="flex w-full items-center gap-2 px-4">
+            <div className="my-1.5 w-1/2 rounded-2xl bg-[#101010] py-2 text-center text-base font-bold text-gray-500">
+              Rating 4.0+
+            </div>
+            <div className="my-1.5 w-1/2 rounded-2xl bg-[#101010] py-2 text-center text-base font-bold text-gray-500">
+              Bestsellers
+            </div>
+          </div>
+        </div>
+
+        <div className="z-0 mt-40 flex flex-col items-center justify-center px-4">
+          <div className="items-stretc flex w-full gap-4 overflow-hidden rounded-xl bg-[#101010] p-4">
+            <div className="relative size-44 w-1/2 overflow-hidden rounded-xl">
+              <img
+                src={CARD_IMG + cloudinaryImageId}
+                alt=""
+                className="size-full object-cover object-center"
+              />
+            </div>
+            <div className="place-items-left grid w-1/2">
+              <div className="flex h-full flex-col text-left text-white">
+                <h1 className="line-clamp-2 text-2xl font-bold text-orange-500">
+                  {name}
+                </h1>
+                <p className="text-lg font-bold text-gray-500">
+                  {cuisines.join(", ")}
+                </p>
+                <div className="flex flex-col">
+                  <span className="inline-block text-lg font-bold text-gray-500">
+                    {city}
+                  </span>
+                  <span className="mt-1 inline-flex items-center gap-1">
+                    <IconStarFilled
+                      size={18}
+                      color="yellow"
+                      className="opacity-80"
+                    />
+                    <p className="text-lg font-bold text-gray-500">
+                      {avgRating}
+                    </p>
+                  </span>
+                </div>
+                <span className="text-lg font-bold text-gray-500">
+                  {costForTwoMessage}
+                </span>
+              </div>
+              <div className="mt-2 flex items-center justify-center gap-1"></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="Menu-items  my-8 text-white">
+          {category &&
+            category.map((category) => (
+              <RestaurantMenuCategory
+                key={category?.card?.card.title}
+                data={category?.card?.card}
+              />
+            ))}
+        </div>
       </div>
     </div>
   );

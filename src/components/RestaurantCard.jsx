@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { IconPointFilled, IconStarFilled } from "@tabler/icons-react";
+import { IconArrowRight, IconPointFilled, IconStarFilled } from "@tabler/icons-react";
 import { CARD_IMG } from "../utils/constants";
 import AddToCartButton from "./AddToCartButton";
 const RestaurantCard = ({ resData }) => {
@@ -20,9 +20,9 @@ const RestaurantCard = ({ resData }) => {
   };
 
   return (
-    <div className="relative flex flex-col gap-3 overflow-hidden rounded-3xl lg:w-60 xl:w-60 2xl:w-60">
+    <div className="relative bg-white/10  filter backdrop-blur-3xl p-3 flex flex-col gap-3 overflow-hidden rounded-lg lg:w-72 xl:w-72 2xl:w-72">
       <div
-        className="imgb relative h-44 overflow-hidden rounded-3xl"
+        className="imgb relative h-44 overflow-hidden rounded"
         style={cardStyle}
       >
         <div className="absolute inset-0 flex size-full bg-gradient-to-t from-black/75 from-5%">
@@ -35,7 +35,11 @@ const RestaurantCard = ({ resData }) => {
         </div>
       </div>
 
-      <div className="px-2">
+      <div className="absolute hidden lg:grid xl:grid 2xl:grid md:grid size-10  place-items-center bg-green-600 rounded-md bottom-3 right-3">
+<IconArrowRight size={24} color="white"strokeWidth={3} />
+      </div>
+
+      <div className="">
         <p className="line-clamp-1 text-xl font-bold tracking-tight text-white">
           {name}
         </p>
@@ -60,7 +64,7 @@ const RestaurantCard = ({ resData }) => {
             ? cuisines.join(", ").toLowerCase().split(",")[0]
             : "N/A"}
         </p>
-        <p className="relative bottom-1 mb-[1px] text-lg font-bold text-gray-300">
+        <p className="relative bottom-1  mb-[1px] text-lg font-bold text-gray-300">
           {costForTwo.split(" ")[0]}{" "}
           <span className="text-xs/none italic text-gray-500/75">for two</span>{" "}
         </p>
