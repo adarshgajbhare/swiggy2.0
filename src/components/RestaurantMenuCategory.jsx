@@ -2,6 +2,7 @@ import { useState } from "react";
 import RestaurantMenuItems from "./RestaurantMenuItems";
 import {
   IconChevronDown,
+  IconPointFilled,
   IconSquareChevronDownFilled,
 } from "@tabler/icons-react";
 const RestaurantMenuCategory = (data) => {
@@ -12,23 +13,25 @@ const RestaurantMenuCategory = (data) => {
     setShowItems(!showItems);
   };
   return (
-    <div>
-      <div className="m-auto mx-auto my-4 text-center md:w-1/2 lg:w-1/2 xl:w-1/2 2xl:w-1/2">
+    
+      <div className="mx-auto  my-4 w-full text-center">
         <div
-          className="flex cursor-pointer justify-between bg-[#050505]"
+          className="mx-3 flex cursor-pointer items-center justify-between gap-3 rounded-xl bg-[#151515] px-3 py-4 text-white"
           onClick={handleMenuShow}
         >
-          <span className="mb-3 pl-4 text-3xl font-bold">
+          <div className="text-xl flex items-center w-full  justify-between font-bold ">
             {" "}
-            {data?.data?.title} ({data?.data?.itemCards.length})
-          </span>
+            <span className="inline-block">{data?.data?.title}</span>
+            <IconPointFilled size={18} strokeWidth={1} color="gray" className="opacity-0" />
+             <span className="inline-block">{data?.data?.itemCards.length}</span>
+          </div>
           <span className={` ${showItems ? "rotate-180" : ""} `}>
-            <IconSquareChevronDownFilled size={36} color="gray" />
+            <IconSquareChevronDownFilled size={28} color="#2d6a4f" />
           </span>
         </div>
         {showItems && <RestaurantMenuItems items={data?.data?.itemCards} />}
       </div>
-    </div>
+ 
   );
 };
 

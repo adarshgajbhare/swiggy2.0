@@ -9,15 +9,10 @@ import {
 import { Link } from "react-router-dom";
 import {
   IconArrowLeft,
-  IconCircle,
-  IconCircleDotFilled,
-  IconHome,
   IconMinus,
   IconPlus,
   IconPointFilled,
   IconRosetteDiscountCheckFilled,
-  IconSquareDot,
-  IconSquareDotFilled,
 } from "@tabler/icons-react";
 
 const Cart = () => {
@@ -69,7 +64,7 @@ const Cart = () => {
   }
   return (
     <>
-      <div className="hidden lg:block xl:block 2xl:block md:block max-h-screen overflow-hidden bg-[#050505]">
+      <div className="hidden max-h-screen overflow-hidden bg-[#020202] md:block ">
         <div className="mx-auto my-28 flex max-h-[75vh] w-3/4">
           <div className="flex max-h-[75vh] w-[80%] flex-col gap-10 overflow-y-scroll pr-6 pt-4">
             {Array.isArray(CartItem) &&
@@ -111,7 +106,7 @@ const Cart = () => {
                     >
                       <IconMinus size={20} color="white" strokeWidth={4} />
                     </button>
-                    <p className="mx-2 inline-block p-2 font-bold text-white">
+                    <p className="mx-3 inline-block p-2 font-bold text-white">
                       {menuItem.count}
                     </p>
                     <button
@@ -170,54 +165,55 @@ const Cart = () => {
         </div>
       </div>
 
-      <div className="min-h-dvh lg:hidden xl:hidden 2xl:hidden overflow-hidden bg-[#101010]">
-        <div className="mt-0 flex items-center rounded-b-3xl border-b border-white/15 bg-gradient-to-b from-transparent to-orange-500/10 p-4">
-          <IconArrowLeft
-            size={40}
-            strokeWidth={1}
-            color="white"
-            className="inline-block"
-          />
-          <div className="">
-            <p className="ml-2 inline-block text-xl font-bold text-white">
-              55-60 mins
-            </p>
-            <p className="ml-2 inline-block font-medium text-gray-500">
-              D - 33, 2nd Floor, Sector 6, Noida, Uttar Pradesh 201301
-            </p>
+      <div className="min-h-dvh overflow-hidden bg-[#101010] lg:hidden xl:hidden 2xl:hidden">
+        <div className="fixed left-0 right-0 top-0 flex flex-col items-center gap-3 rounded-b-3xl border-b border-white/20 bg-gradient-to-b from-transparent to-black filter backdrop-blur-xl z-50  pt-5">
+          <div className="flex w-full items-center">
+            <IconArrowLeft
+              size={30}
+              strokeWidth={2}
+              color="white"
+              className="mx-2 inline-block scale-150"
+            />
+            <div className="inline-flex w-full gap-2 flex-col">
+              <p className="ml-2  inline-block text-base/3 font-bold text-white">
+                55-60 mins
+              </p>
+              <p className="ml-2 inline-block text-sm/4 w-[96%] text-balance font-medium text-gray-500">
+                D - 33, 2nd Floor, Sector 6, Noida, Uttar Pradesh 201301
+              </p>
+            </div>
           </div>
+          <p className="mx-3 flex w-full items-center gap-1 rounded-t rounded-b-2xl border border-[#29C7B4] bg-[#DDFBEF]/90 px-2 py-1 font-medium text-[#1BA672]">
+            <IconRosetteDiscountCheckFilled
+              size={32}
+              strokeWidth={1}
+              color="#1BA672"
+              className="inline-block"
+            />
+            <span>
+              Awesome! you'll save <strong>₹{discountPrice.toFixed(2)}</strong> on this
+              order
+            </span>
+          </p>
         </div>
 
-        <p className="mx-4 my-5 flex items-center gap-1 rounded-2xl border-4 border-[#29C7B4] bg-[#DDFBEF] px-4 py-1.5 text-lg font-medium text-[#1BA672]">
-          <IconRosetteDiscountCheckFilled
-            size={28}
-            strokeWidth={1}
-            color="#1BA672"
-            className="inline-block"
-          />
-          <span>
-            You'll save <strong>₹{discountPrice.toFixed(2)}</strong> on this
-            order 🎉
-          </span>
-        </p>
-
-        <div className="mx-4 flex flex-col overflow-y-scroll rounded-t-2xl bg-[#151515] px-4 py-2">
+        <div className="mx-3 mt-[150px] flex flex-col overflow-y-scroll rounded-t-xl bg-[#151515] px-2.5">
           {Array.isArray(CartItem) &&
             CartItem.map((menuItem) => (
               <div
-                className="my-4 flex w-full items-center justify-between gap-4 overflow-y-hidden"
+                className="my-4 flex w-full items-center justify-between gap-2 overflow-y-hidden"
                 key={menuItem.card && menuItem.card.info.id}
               >
                 <div className="flex w-[55%] items-center gap-2">
-                  <span className="grid size-9 scale-75 place-items-center self-start rounded-md border border-[#386641]">
+                  <span className="relative top-[2px] grid scale-75 place-items-center self-start rounded-md border border-[#386641]">
                     <IconPointFilled
-                      size={32}
+                      size={20}
                       strokeWidth={1}
                       color="#386641"
                       className="inline-block"
                     />
                   </span>
-                  <p className="line-clamp-2 max-w-[18ch] text-base font-medium text-white">
+                  <p className="line-clamp-2 max-w-[25ch] text-white">
                     {menuItem.card.info.name}
                   </p>
                 </div>
@@ -225,31 +221,31 @@ const Cart = () => {
                 <div className="flex w-[45%] items-center justify-between">
                   <div className="flex items-center">
                     <button
-                      className="rounded-md bg-orange-500 p-2 font-bold text-white disabled:cursor-not-allowed disabled:bg-orange-500/50"
+                      className="scale-90 rounded-md bg-orange-500 p-2 font-bold text-white disabled:cursor-not-allowed disabled:bg-orange-500/50"
                       onClick={() => handleDecreaseItem(menuItem)}
                     >
                       <IconMinus size={12} color="white" strokeWidth={4} />
                     </button>
-                    <p className="mx-2 inline-block p-2 font-bold text-white">
+                    <p className="mx-1 inline-block p-2 font-bold text-white">
                       {menuItem.count}
                     </p>
                     <button
-                      className="rounded-md bg-orange-500 p-2 font-bold text-white"
+                      className="scale-90 rounded-md bg-orange-500 p-2 font-bold text-white"
                       onClick={() => handleIncreaseItem(menuItem)}
                     >
                       <IconPlus size={12} color="white" strokeWidth={4} />
                     </button>
                   </div>
 
-                  <div className="ml-auto flex flex-col items-center text-sm/none">
-                    <p className="text-lg font-bold text-gray-500">
+                  <div className="flex flex-col items-center text-sm/none">
+                    <p className="text-lg font-semibold text-gray-200">
                       ₹
                       {menuItem.card.info.price
                         ? (menuItem.card.info.price / 100) * menuItem.count
                         : (menuItem.card.info.defaultPrice / 100) *
                           menuItem.count}
                     </p>
-                    <p className="text-xs/none text-white">
+                    <p className="text-xs/none text-gray-500">
                       (
                       {menuItem.card.info.price?.toFixed(2) / 100 ||
                         menuItem.card.info.defaultPrice?.toFixed(2) / 100}
@@ -261,7 +257,7 @@ const Cart = () => {
             ))}
         </div>
 
-        <div className="mx-4 rounded-b-2xl bg-[#151515]">
+        <div className="mx-3 rounded-b-2xl bg-[#151515]">
           <div className="flex items-center justify-between border-t border-dashed border-white/10 px-4 py-4 text-white">
             Add more items
             <span className="grid size-7 place-items-center rounded-full border">
@@ -286,7 +282,7 @@ const Cart = () => {
           </div>
         </div>
 
-        <div className="mx-4 my-8 flex flex-col rounded-xl bg-[#151515] p-4">
+        <div className="mx-3 my-4 flex flex-col rounded-xl bg-[#151515] p-4">
           <h2 className="text-xl font-bold text-white">Bill Details</h2>
 
           <div className="mt-8 flex grow flex-col gap-4 font-bold text-white">

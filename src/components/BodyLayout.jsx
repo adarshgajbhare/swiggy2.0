@@ -64,11 +64,11 @@ const BodyLayout = () => {
     <>
       <div className="overflow-auto bg-[#050505]">
         <div className="fixed left-1/2 top-0 size-[1000px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/80 blur-[200px] filter"></div>
-        <h1 className="relative mb-8 mt-40 flex w-full items-center px-2 text-2xl font-bold text-white lg:ml-40 lg:text-3xl md:xl:text-3xl xl:ml-40 xl:text-3xl 2xl:ml-40">
+        <h1 className="relative mb-8 mt-40 flex w-full items-center px-2 text-2xl font-bold text-white lg:ml-28 lg:text-3xl md:xl:text-3xl xl:ml-28 xl:text-3xl 2xl:ml-28">
           <span className="inline-block">What's on your mind</span>
         </h1>
 
-        <div className="relative mx-auto mt-4 flex cursor-pointer flex-col flex-nowrap gap-6 overflow-x-scroll whitespace-nowrap rounded-xl border-2 border-red-400 px-2 lg:w-4/5 xl:w-4/5 2xl:w-4/5">
+        <div className="relative mx-auto mt-4 flex cursor-pointer flex-col flex-nowrap gap-6 overflow-x-scroll whitespace-nowrap rounded-xl border-2 border-red-400 px-2 lg:w-[85%] xl:w-[85%] 2xl:w-[85%]">
           <Slider {...settings} slidesToShow={5}>
             {dataBanner &&
               dataBanner.map((banner) => (
@@ -84,7 +84,7 @@ const BodyLayout = () => {
               ))}
           </Slider>
         </div>
-        <div className="relative mb-8 mt-16 flex w-full items-center px-2 text-2xl font-bold text-white lg:ml-40 lg:text-3xl md:xl:text-3xl xl:ml-40 xl:text-3xl 2xl:ml-40">
+        <div className="relative mb-8 mt-16 flex w-full items-center px-2 text-2xl font-bold text-white lg:ml-28 lg:text-3xl md:xl:text-3xl xl:ml-28 xl:text-3xl 2xl:ml-28">
           <span className="inline-block">Top restaurants near you</span>
 
           {/* <div className="ml-auto flex items-center gap-2">
@@ -107,7 +107,7 @@ const BodyLayout = () => {
           </div> */}
         </div>
 
-        <div className="relative mx-auto mt-4 flex flex-nowrap gap-6 overflow-x-scroll whitespace-nowrap rounded-xl px-2 lg:w-4/5 xl:w-4/5 2xl:w-4/5">
+        <div className="relative mx-auto mt-4 flex flex-nowrap gap-6 overflow-x-scroll whitespace-nowrap rounded-lg px-2 lg:w-[85%] xl:w-[85%] 2xl:w-[85%]">
           {filteredListOfRestaurant &&
             filteredListOfRestaurant.map((restaurant) => (
               <Link
@@ -127,13 +127,13 @@ const BodyLayout = () => {
           />
         </div>
 
-        <h1 className="relative mb-8 flex w-full items-center px-2 text-2xl font-bold text-white lg:ml-40 lg:text-3xl md:xl:text-3xl xl:ml-40 xl:text-3xl 2xl:ml-40">
+        <h1 className="relative mb-8 flex w-full items-center px-2 text-2xl font-bold text-white md:text-3xl lg:ml-28 lg:text-3xl xl:ml-28 xl:text-3xl 2xl:ml-28">
           <span className="inline-block">
             Restaurants with online food delivery in Mumbai
           </span>
         </h1>
 
-        <div className="lg:-40 relative mb-44 grid grid-cols-[repeat(2,_1fr)] gap-5 px-2 md:grid-cols-[repeat(3,_1fr)] lg:w-2/3 lg:grid-cols-[repeat(4,_1fr)] lg:gap-14 xl:ml-40 xl:w-2/3 xl:grid-cols-[repeat(4,_1fr)] xl:gap-14 2xl:ml-40 2xl:w-2/3 2xl:grid-cols-[repeat(4,_1fr)] 2xl:gap-14">
+        <div className="lg:ml-28 relative mb-44 grid grid-cols-[repeat(2,_1fr)] gap-2 px-2 md:grid-cols-[repeat(3,_1fr)] lg:w-2/3 lg:grid-cols-[repeat(4,_1fr)] lg:gap-14 xl:ml-28 xl:w-2/3 xl:grid-cols-[repeat(4,_1fr)] xl:gap-8 2xl:ml-28 2xl:w-2/3 2xl:grid-cols-[repeat(4,_1fr)] 2xl:gap-14">
           {filteredListOfRestaurant &&
             filteredListOfRestaurant.map((restaurant) => (
               <Link
