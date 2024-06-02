@@ -50,7 +50,7 @@ const Contact = () => {
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_ID,
         templateParams,
-        import.meta.env.VITE_PUBLIC_KEY
+        import.meta.env.VITE_PUBLIC_KEY,
       );
 
       // Display success alert
@@ -68,18 +68,19 @@ const Contact = () => {
   };
 
   return (
-    <div className="Contact grid place-items-center min-h-dvh bg-black">
-      <div className="container border-black border lg:w-1/2 md:w-1/2 xl:w-1/2 2xl:w-1/2">
+    <div className="Contact grid min-h-dvh place-items-center bg-black">
+      <div className="container border border-black md:w-1/2 lg:w-1/2 xl:w-1/2 2xl:w-1/2">
         <div className="row">
           <div className="col-12 text-center">
             <div className="Contact">
               <form
                 id="contact-form"
                 onSubmit={handleSubmit(onSubmit)}
-                noValidate>
+                noValidate
+              >
                 {/* Row 1 of form */}
                 <div className="row formRow">
-                  <div className="col-6 ">
+                  <div className="col-6">
                     <input
                       type="text"
                       name="name"
@@ -93,8 +94,9 @@ const Contact = () => {
                           message: "Please use 30 characters or less",
                         },
                       })}
-                      className=" w-4/5 py-3 text-gray-500 px-4 border border-black text-2xl font-bold focus:outline-none rounded-lg bg-[#101010] mb-3.5"
-                      placeholder="Name"></input>
+                      className="mb-3.5 w-4/5 rounded-lg border border-black bg-[#101010] px-4 py-3 text-2xl font-bold text-gray-500 focus:outline-none"
+                      placeholder="Name"
+                    ></input>
                     {errors.name && (
                       <span className="errorMessage">
                         {errors.name.message}
@@ -110,8 +112,9 @@ const Contact = () => {
                         pattern:
                           /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                       })}
-                      className="w-4/5 py-3 text-gray-500 px-4 border border-black text-2xl font-bold focus:outline-none rounded-lg bg-[#101010] mb-3.5"
-                      placeholder="Email address"></input>
+                      className="mb-3.5 w-4/5 rounded-lg border border-black bg-[#101010] px-4 py-3 text-2xl font-bold text-gray-500 focus:outline-none"
+                      placeholder="Email address"
+                    ></input>
                     {errors.email && (
                       <span className="errorMessage">
                         Please enter a valid email address
@@ -135,8 +138,9 @@ const Contact = () => {
                           message: "Subject cannot exceed 75 characters",
                         },
                       })}
-                      className=" w-4/5 py-3 text-gray-500 px-4 border border-black text-2xl font-bold focus:outline-none rounded-lg bg-[#101010] mb-3.5"
-                      placeholder="Subject"></input>
+                      className="mb-3.5 w-4/5 rounded-lg border border-black bg-[#101010] px-4 py-3 text-2xl font-bold text-gray-500 focus:outline-none"
+                      placeholder="Subject"
+                    ></input>
                     {errors.subject && (
                       <span className="errorMessage">
                         {errors.subject.message}
@@ -153,8 +157,9 @@ const Contact = () => {
                       {...register("message", {
                         required: true,
                       })}
-                      className=" w-4/5 py-3 text-gray-500 px-4 border border-black text-2xl font-bold focus:outline-none rounded-lg bg-[#101010] mb-3.5"
-                      placeholder="Message"></textarea>
+                      className="mb-3.5 w-4/5 rounded-lg border border-black bg-[#101010] px-4 py-3 text-2xl font-bold text-gray-500 focus:outline-none"
+                      placeholder="Message"
+                    ></textarea>
                     {errors.message && (
                       <span className="errorMessage">
                         Please enter a message
@@ -164,9 +169,10 @@ const Contact = () => {
                 </div>
 
                 <button
-                  className=" w-4/5 py-3 text-gray-500 px-4 border border-black text-2xl font-bold focus:outline-none rounded-lg bg-orange-600 text-white mb-3.5"
+                  className="mb-3.5 w-4/5 rounded-lg border border-black bg-orange-600 px-4 py-3 text-2xl font-bold text-gray-500 text-white focus:outline-none"
                   disabled={disabled}
-                  type="submit">
+                  type="submit"
+                >
                   Submit
                 </button>
               </form>
@@ -177,7 +183,8 @@ const Contact = () => {
       {alertInfo.display && (
         <div
           className={`alert alert-${alertInfo.type} alert-dismissible mt-5`}
-          role="alert">
+          role="alert"
+        >
           {alertInfo.message}
           <button
             type="button"

@@ -5,7 +5,8 @@ const SearchContext = createContext({
   setSearch: () => {},
 });
 
-export const SearchProvider = ({ children }) => {  // Corrected prop name to 'childr
+export const SearchProvider = ({ children }) => {
+  // Corrected prop name to 'childr
   const [search, setSearch] = useState("");
 
   return (

@@ -2,35 +2,36 @@ import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
 
 const About = () => {
   return (
-    <div className=" bg-black min-h-dvh text-white overflow-auto ">
-      <div className="flex justify-center items-center mt-28">
+    <div className="min-h-dvh overflow-auto bg-black text-white">
+      <div className="mt-28 flex items-center justify-center">
         <img
-          className="h-[200px] w-[200px] rounded-full border-orange-500 border-4 hover:border-orange-700 "
+          className="h-[200px] w-[200px] rounded-full border-4 border-orange-500 hover:border-orange-700"
           src="https://t4.ftcdn.net/jpg/03/10/14/71/360_F_310147159_YbbmrcZ0GhdoGfSM6tNMpeJZDHt05UqU.jpg"
           alt=""
           srcSet=""
         />
       </div>
-      <div className="flex justify-center items-center mt-3 font-bold text-3xl">
+      <div className="mt-3 flex items-center justify-center text-3xl font-bold">
         <a
-          className=" hover:underline hover:text-orange-500"
+          className="hover:text-orange-500 hover:underline"
           href="http://www.github.com/adarshgajbhare "
-          target="_blank">
-          <h1 className=" text-2xl md:text-5xl mb-4 mt-4 text-white hover:text-orange-500 hover:underline">
+          target="_blank"
+        >
+          <h1 className="mb-4 mt-4 text-2xl text-white hover:text-orange-500 hover:underline md:text-5xl">
             {" "}
             Adarsh Gajbhare
           </h1>
         </a>
       </div>
 
-      <div className="flex justify-center items-center mt-3 font-bold ">
-        <h3 className=" mt-4 mb-1 text-xl md:text-2xl italic flex-wrap w-[30rem] items-center justify-center text-center ">
+      <div className="mt-3 flex items-center justify-center font-bold">
+        <h3 className="mb-1 mt-4 w-[30rem] flex-wrap items-center justify-center text-center text-xl italic md:text-2xl">
           Passionate Full-Stack Developer Coding enthusiast. I love exploring in
           variety of domains like React Js | Next Js | JavaScript | Java |
           Databases
         </h3>
       </div>
-      <div class="flex gap-x-5 mt-10 justify-center items-center mb-6">
+      <div class="mb-6 mt-10 flex items-center justify-center gap-x-5">
         <a href="https://github.com/adarshgajbhare" target="_blank">
           <IconBrandGithub strokeWidth={2} size={30} />
         </a>

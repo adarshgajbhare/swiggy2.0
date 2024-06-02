@@ -58,37 +58,33 @@ const BodyLayout = () => {
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 6,
-    
   };
 
   return (
     <>
-      <div className="bg-[#050505] overflow-auto">
-        <div className="fixed top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 size-[1000px] bg-orange-500/80  filter blur-[200px] rounded-full "></div>
-        <h1
-          className="text-white relative  w-full flex items-center mt-40 font-bold lg:text-3xl md:xl:text-3xl  xl:text-3xl text-2xl  mb-8 lg:ml-40 xl:ml-40 2xl:ml-40
-        px-2"
-        >
+      <div className="overflow-auto bg-[#050505]">
+        <div className="fixed left-1/2 top-0 size-[1000px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/80 blur-[200px] filter"></div>
+        <h1 className="relative mb-8 mt-40 flex w-full items-center px-2 text-2xl font-bold text-white lg:ml-40 lg:text-3xl md:xl:text-3xl xl:ml-40 xl:text-3xl 2xl:ml-40">
           <span className="inline-block">What's on your mind</span>
         </h1>
 
-        <div className="flex   border-2 border-red-400 flex-col  cursor-pointer whitespace-nowrap flex-nowrap gap-6 overflow-x-scroll px-2 relative lg:w-4/5 xl:w-4/5 2xl:w-4/5 mt-4 rounded-xl mx-auto ">
+        <div className="relative mx-auto mt-4 flex cursor-pointer flex-col flex-nowrap gap-6 overflow-x-scroll whitespace-nowrap rounded-xl border-2 border-red-400 px-2 lg:w-4/5 xl:w-4/5 2xl:w-4/5">
           <Slider {...settings} slidesToShow={5}>
             {dataBanner &&
               dataBanner.map((banner) => (
                 <div
                   key={banner?.id}
-                  className="shrink-0 relative  h-52 max-w-52  overflow-hidden rounded-3xl  "
+                  className="relative h-52 max-w-52 shrink-0 overflow-hidden rounded-3xl"
                 >
                   <img
                     src={CARD_IMG + banner?.imageId}
-                    className="w-full h-full object-center object-cover aspect-square"
+                    className="aspect-square h-full w-full object-cover object-center"
                   />
                 </div>
               ))}
           </Slider>
         </div>
-        <div className="text-white relative w-full flex items-center  font-bold lg:text-3xl md:xl:text-3xl  xl:text-3xl text-2xl mt-16 mb-8 lg:ml-40 xl:ml-40 2xl:ml-40 px-2">
+        <div className="relative mb-8 mt-16 flex w-full items-center px-2 text-2xl font-bold text-white lg:ml-40 lg:text-3xl md:xl:text-3xl xl:ml-40 xl:text-3xl 2xl:ml-40">
           <span className="inline-block">Top restaurants near you</span>
 
           {/* <div className="ml-auto flex items-center gap-2">
@@ -111,7 +107,7 @@ const BodyLayout = () => {
           </div> */}
         </div>
 
-        <div className="flex relative px-2  lg:w-4/5 xl:w-4/5 2xl:w-4/5  mt-4 rounded-xl mx-auto whitespace-nowrap flex-nowrap gap-6 overflow-x-scroll">
+        <div className="relative mx-auto mt-4 flex flex-nowrap gap-6 overflow-x-scroll whitespace-nowrap rounded-xl px-2 lg:w-4/5 xl:w-4/5 2xl:w-4/5">
           {filteredListOfRestaurant &&
             filteredListOfRestaurant.map((restaurant) => (
               <Link
@@ -123,7 +119,7 @@ const BodyLayout = () => {
             ))}
         </div>
 
-        <div className="flex relative z-50  ml-6">
+        <div className="relative z-50 ml-6 flex">
           <Search
             filteredListOfRestaurant={filteredListOfRestaurant}
             resData={data}
@@ -131,13 +127,13 @@ const BodyLayout = () => {
           />
         </div>
 
-        <h1 className="text-white relative  w-full flex items-center  font-bold lg:text-3xl md:xl:text-3xl  xl:text-3xl text-2xl mb-8 lg:ml-40 xl:ml-40 2xl:ml-40 px-2">
+        <h1 className="relative mb-8 flex w-full items-center px-2 text-2xl font-bold text-white lg:ml-40 lg:text-3xl md:xl:text-3xl xl:ml-40 xl:text-3xl 2xl:ml-40">
           <span className="inline-block">
             Restaurants with online food delivery in Mumbai
           </span>
         </h1>
 
-        <div className=" px-2 relative lg:w-2/3 xl:w-2/3 2xl:w-2/3  lg:-40 xl:ml-40 2xl:ml-40 grid lg:grid-cols-[repeat(4,_1fr)] xl:grid-cols-[repeat(4,_1fr)] 2xl:grid-cols-[repeat(4,_1fr)] grid-cols-[repeat(2,_1fr)] md:grid-cols-[repeat(3,_1fr)] lg:gap-14 xl:gap-14 2xl:gap-14 gap-5 mb-44">
+        <div className="lg:-40 relative mb-44 grid grid-cols-[repeat(2,_1fr)] gap-5 px-2 md:grid-cols-[repeat(3,_1fr)] lg:w-2/3 lg:grid-cols-[repeat(4,_1fr)] lg:gap-14 xl:ml-40 xl:w-2/3 xl:grid-cols-[repeat(4,_1fr)] xl:gap-14 2xl:ml-40 2xl:w-2/3 2xl:grid-cols-[repeat(4,_1fr)] 2xl:gap-14">
           {filteredListOfRestaurant &&
             filteredListOfRestaurant.map((restaurant) => (
               <Link

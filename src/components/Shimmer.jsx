@@ -1,9 +1,7 @@
 import React from "react";
 const Shimmer = () => {
   return (
-    
     <div className="shim-container">
-        
       <div className="shimmer-card"></div>
       <div className="shimmer-card"></div>
       <div className="shimmer-card"></div>
@@ -21,8 +19,7 @@ const Shimmer = () => {
       <div className="shimmer-card"></div>
       <div className="shimmer-card"></div>
       <div className="shimmer-card"></div>
-      </div>
-   
+    </div>
   );
 };
 

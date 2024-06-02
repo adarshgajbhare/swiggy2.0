@@ -9,7 +9,6 @@ const useFetchBanner = (api) => {
       try {
         const response = await fetch(api);
         const json = await response.json();
-       
 
         if (json) {
           const processedData = checkJsonData(json);
@@ -24,7 +23,7 @@ const useFetchBanner = (api) => {
 
         try {
           const localResponse = await fetch(
-            "https://raw.githubusercontent.com/adarshgajbhare/Swiggy-Clone/fa7c8f3adbb478b9bce93bf7bb3cff7af0478145/src/utils/v5.json"
+            "https://raw.githubusercontent.com/adarshgajbhare/Swiggy-Clone/fa7c8f3adbb478b9bce93bf7bb3cff7af0478145/src/utils/v5.json",
           );
 
           if (!localResponse.ok) {
@@ -52,7 +51,8 @@ const useFetchBanner = (api) => {
 
   const checkJsonData = (jsonData) => {
     const allbannerData = [];
-    const imageGridCardsInfo = jsonData?.data.cards[0].card.card.imageGridCards.info;
+    const imageGridCardsInfo =
+      jsonData?.data.cards[0].card.card.imageGridCards.info;
 
     imageGridCardsInfo.forEach((bannerData, i) => {
       allbannerData.push(bannerData);

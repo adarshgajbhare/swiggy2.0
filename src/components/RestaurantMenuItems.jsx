@@ -2,17 +2,14 @@ import React, { createContext } from "react";
 import { useDispatch } from "react-redux";
 import { CARD_IMG } from "../utils/constants";
 import { addItem } from "../store/cartSlice";
-import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const RestaurantMenuItems = ({ items }) => {
   const dispatch = useDispatch();
 
-  const handleAddItem = (menuItem  ) =>
-   {
-  
+  const handleAddItem = (menuItem) => {
     try {
-     
-      dispatch(addItem( menuItem ));
+      dispatch(addItem(menuItem));
     } catch (error) {
       console.error("Error in handleAddItem:", error);
     }
@@ -25,43 +22,42 @@ const RestaurantMenuItems = ({ items }) => {
           const priceValue =
             menuItem.card.info.price / 100 ||
             menuItem.card.info.defaultPrice / 100;
-            
+
           return (
             <div
               key={menuItem.card && menuItem.card.info.id}
-              className=" border-b  py-6   border-gray-50/10  text-left flex  items-center justify-between"
+              className="flex items-center justify-between border-b border-gray-50/10 py-6 text-left"
             >
               <div className="w-2/3 px-4">
                 <div className="flex flex-col gap-1">
-                  <span className="font-bold text-2xl text-gray-50 ">{menuItem.card.info.name}</span>
-                  <p className="font-bold text-xl text-gray-50">
+                  <span className="text-2xl font-bold text-gray-50">
+                    {menuItem.card.info.name}
+                  </span>
+                  <p className="text-xl font-bold text-gray-50">
                     ₹{priceValue}
                   </p>
-                  <p className="text-lg lg:w-2/3 xl:w-2/3 2xl:w-2/3  md:w-2/3  text-gray-400">
+                  <p className="text-lg text-gray-400 md:w-2/3 lg:w-2/3 xl:w-2/3 2xl:w-2/3">
                     {menuItem.card.info.description}
                   </p>
                 </div>
               </div>
-              <div className="relative lg:h-52 xl:h-52 md:h-52 2xl:h-52 size-32 grow  rounded-lg w-1/3">
+              <div className="relative size-32 w-1/3 grow rounded-lg md:h-52 lg:h-52 xl:h-52 2xl:h-52">
                 <img
-               
                   className="size-full object-cover object-center"
                   src={CARD_IMG + menuItem.card.info.imageId}
                 />
                 <button
-                  onClick={()  => handleAddItem(menuItem )}
-                className="absolute bg-green-600 px-6 py-1 text-lg font-bold rounded-full -bottom-2 z-10 lg:left-[100px] xl:left-[100px] md:left-[100px] left-8">
-ADD
+                  onClick={() => handleAddItem(menuItem)}
+                  className="absolute -bottom-2 left-8 z-10 rounded-full bg-green-600 px-6 py-1 text-lg font-bold md:left-[100px] lg:left-[100px] xl:left-[100px]"
+                >
+                  ADD
                 </button>
               </div>
             </div>
           );
         })}
-        
     </div>
   );
 };
 
 export default RestaurantMenuItems;
-
-

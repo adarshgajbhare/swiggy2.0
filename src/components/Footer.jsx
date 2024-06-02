@@ -48,13 +48,13 @@ const Footer = () => {
   // export default Footer;
 
   return (
-   <>
-    <div className=" flex text-black justify-center shadow-2xl ">
-      <div className=" items-center justify-center ">
-        Made with ❤️ by Adarsh Gajbhare
+    <>
+      <div className="flex justify-center text-black shadow-2xl">
+        <div className="items-center justify-center">
+          Made with ❤️ by Adarsh Gajbhare
+        </div>
       </div>
-    </div>
-   </>
+    </>
   );
 };
 export default Footer;
