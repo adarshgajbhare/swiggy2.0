@@ -20,7 +20,7 @@ const Login = () => {
 
   const notify = () =>
     toast(
-      "Please you access-control-allow-origin extension to see the real time data from Swiggy.."
+      "Please you access-control-allow-origin extension to see the real time data from Swiggy..",
     );
   const handleAuth = async () => {
     if (isSignUp) {
@@ -28,7 +28,7 @@ const Login = () => {
         const userCredential = await createUserWithEmailAndPassword(
           auth,
           email.current.value,
-          password.current.value
+          password.current.value,
         );
         const user = userCredential.user;
         if (user) {
@@ -49,7 +49,7 @@ const Login = () => {
         const userCredential = await signInWithEmailAndPassword(
           auth,
           email.current.value,
-          password.current.value
+          password.current.value,
         );
         const user = userCredential.user;
         if (user) {
@@ -65,38 +65,38 @@ const Login = () => {
 
   return (
     <>
-      <div className=" min-h-dvh flex">
-        <div className=" lg:w-1/2 xl:w-1/2 md:w-1/2 2xl:w-1/2 w-full shrink-0 grid place-items-center bg-[#050505]">
-          <div className=" gap-8 w-3/5   flex flex-col">
-            <span className="text-center mb-6  py-2 font-black text-5xl bg-gradient-to-r from-orange-300 via-orange-500 tracking-tight to-orange-600 bg-clip-text text-transparent">
+      <div className="flex min-h-dvh">
+        <div className="grid w-full shrink-0 place-items-center bg-[#050505] md:w-1/2 lg:w-1/2 xl:w-1/2 2xl:w-1/2">
+          <div className="flex w-3/5 flex-col gap-8">
+            <span className="mb-6 bg-gradient-to-r from-orange-300 via-orange-500 to-orange-600 bg-clip-text py-2 text-center text-5xl font-black tracking-tight text-transparent">
               EatNow{" "}
             </span>
-            <h1 className="text-2xl font-semibold text-left text-white">
+            <h1 className="text-left text-2xl font-semibold text-white">
               {isSignUp ? "Sign up" : "Login"}
             </h1>
             {isSignUp && (
               <input
-                className="bg-[#202020] placeholder:text-gray-500 rounded-lg outline-none border border-white/10 placeholder:font-bold px-4 py-3 text-lg text-gray-200"
+                className="rounded-lg border border-white/10 bg-[#202020] px-4 py-3 text-lg text-gray-200 outline-none placeholder:font-bold placeholder:text-gray-500"
                 type="text"
                 ref={username}
                 placeholder="Enter your name"
               />
             )}
             <input
-              className="bg-[#202020] placeholder:text-gray-500 rounded-lg outline-none border border-white/10 placeholder:font-bold px-4 py-3 text-lg text-gray-200"
+              className="rounded-lg border border-white/10 bg-[#202020] px-4 py-3 text-lg text-gray-200 outline-none placeholder:font-bold placeholder:text-gray-500"
               type="email"
               ref={email}
               placeholder="Enter email"
             />
             <input
-              className="bg-[#202020] placeholder:text-gray-500 rounded-lg outline-none border border-white/10 placeholder:font-bold px-4 py-3 text-lg text-gray-200"
+              className="rounded-lg border border-white/10 bg-[#202020] px-4 py-3 text-lg text-gray-200 outline-none placeholder:font-bold placeholder:text-gray-500"
               type="password"
               ref={password}
               placeholder="Enter password"
             />
             <div>
               <button
-                className="bg-orange-500 py-3 px-4 w-full text-white font-bold text-lg rounded-lg"
+                className="w-full rounded-lg bg-orange-500 px-4 py-3 text-lg font-bold text-white"
                 onClick={handleAuth}
               >
                 {isSignUp ? "Sign up" : "Login"}
@@ -108,7 +108,7 @@ const Login = () => {
                   <>
                     Already a member?{" "}
                     <span
-                      className="underline text-blue-500 cursor-pointer"
+                      className="cursor-pointer text-blue-500 underline"
                       onClick={() => setIsSignUp(false)}
                     >
                       Login here
@@ -118,7 +118,7 @@ const Login = () => {
                   <>
                     Not a member?{" "}
                     <span
-                      className="underline text-blue-500 cursor-pointer"
+                      className="cursor-pointer text-blue-500 underline"
                       onClick={() => setIsSignUp(true)}
                     >
                       Sign up here
@@ -130,11 +130,11 @@ const Login = () => {
           </div>
         </div>
 
-        <div className="flex-1 hidden lg:block xl:block 2xl:block md:block shrink-0 overflow-hidden bg-black/40 ">
+        <div className="hidden flex-1 shrink-0 overflow-hidden bg-black/40 md:block lg:block xl:block 2xl:block">
           <img
             src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_1340/Lunch1_vlksgq"
             alt=""
-            className="object-cover object-center size-full relative -z-10"
+            className="relative -z-10 size-full object-cover object-center"
           />
         </div>
       </div>

@@ -47,7 +47,7 @@ const App = () => {
           <UserName.Provider value={{ loggedUser: name, setName }}>
             <div className="app -z-10">
               {location.pathname !== "/" && (
-                <Header  onAPIKeyChange={handleAPIKeyChange} />
+                <Header onAPIKeyChange={handleAPIKeyChange} />
               )}
               <Outlet context={api} />
               {/* <Footer /> */}

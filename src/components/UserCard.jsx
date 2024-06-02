@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 const UserCard = () => {
-   const [count] = useState(0);
-   const [count2] = useState(0);
+  const [count] = useState(0);
+  const [count2] = useState(0);
   return (
     <div className="userCard">
       <p>Function</p>

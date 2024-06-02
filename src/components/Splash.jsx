@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Splash = () => {
   const [isTextShifted, setIsTextShifted] = useState(false);
@@ -10,7 +10,10 @@ const Splash = () => {
 
   return (
     <div className="container-splash">
-      <div className={`content ${isTextShifted ? 'text-shifted' : ''}`} data-tilt>
+      <div
+        className={`content ${isTextShifted ? "text-shifted" : ""}`}
+        data-tilt
+      >
         <div className="heading mt-96 text-black">
           <h1>Are you hungry?</h1>
         </div>
@@ -23,10 +26,10 @@ const Splash = () => {
             <p>New text content.</p>
           </div>
         )}
-        <button className="btn-splash" >
+        <button className="btn-splash">
           <Link to="/home">Get food in 30 minutes!</Link>
         </button>
-        <button className="btn-next"onClick={applyHoverEffect} >
+        <button className="btn-next" onClick={applyHoverEffect}>
           <Link to="#">next</Link>
         </button>
       </div>

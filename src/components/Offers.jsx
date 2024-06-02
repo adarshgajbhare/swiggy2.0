@@ -1,24 +1,21 @@
-
 import React, { useContext } from "react";
 import UserName from "./UserName";
 function Offers() {
   const { loggedUser, setName } = useContext(UserName);
   return (
     <div>
-      <label >Username</label>{" "}
+      <label>Username</label>{" "}
       <input
-      onChange={(e) =>
-            setName (e.target.value)
-      }
-      value={loggedUser}
+        onChange={(e) => setName(e.target.value)}
+        value={loggedUser}
         type="text"
         name="search"
         id="ag"
-        className="border-black border-2"
+        className="border-2 border-black"
       />
-      <h1 className="text-black p-5"> {loggedUser}</h1>
+      <h1 className="p-5 text-black"> {loggedUser}</h1>
     </div>
-  )
+  );
 }
 
-export default Offers
+export default Offers;

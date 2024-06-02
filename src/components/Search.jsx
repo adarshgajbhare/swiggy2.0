@@ -17,7 +17,7 @@ const Search = ({ resData, setFilteredListOfRestaurant }) => {
 
   const searchFilter = () => {
     const searchFilterList = resData.filter((restaurant) =>
-      restaurant.info.name.toLowerCase().includes(search.toLowerCase())
+      restaurant.info.name.toLowerCase().includes(search.toLowerCase()),
     );
 
     if (searchFilterList.length === 0) {
@@ -53,13 +53,12 @@ const Search = ({ resData, setFilteredListOfRestaurant }) => {
   ];
 
   return (
-    <div className=" flex justify-between  items-center mr-12 mt-24">
+    <div className="mr-12 mt-24 flex items-center justify-between">
       <button
         onClick={handleSort}
-        className="absolute  right-3  -top-[725px]  mb-4 mr-0 inline-flex items-center rounded-3xl border border-white/20 filter back
-         bg-[#252525]/10 
-        px-4 py-1.5 backdrop-blur-md">
-        <span className="font-bold text-lg text-gray-50">Sort by</span>
+        className="back absolute -top-[725px] right-3 mb-4 mr-0 inline-flex items-center rounded-3xl border border-white/20 bg-[#252525]/10 px-4 py-1.5 filter backdrop-blur-md"
+      >
+        <span className="text-lg font-bold text-gray-50">Sort by</span>
         <IconChevronDown
           size={22}
           strokeWidth={3}
@@ -69,12 +68,14 @@ const Search = ({ resData, setFilteredListOfRestaurant }) => {
         <div
           className={`${
             openSort ? "block" : "hidden"
-          } absolute top-12 right-2 rounded-md border border-black/10 bg-[#050505]/50 filter backdrop-blur-md shadow-2xl`}>
+          } absolute right-2 top-12 rounded-md border border-black/10 bg-[#050505]/50 shadow-2xl filter backdrop-blur-md`}
+        >
           {sortingOptions.map((option) => (
             <button
               key={option.id}
               onClick={option.func}
-              className="font-sfb block w-full min-w-fit whitespace-nowrap border-b border-black/10 px-4 py-2 text-left text-lg/none text-gray-50">
+              className="font-sfb block w-full min-w-fit whitespace-nowrap border-b border-black/10 px-4 py-2 text-left text-lg/none text-gray-50"
+            >
               {option.label}
             </button>
           ))}

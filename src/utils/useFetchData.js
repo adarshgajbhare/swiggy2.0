@@ -17,29 +17,30 @@ const useFetchData = (api) => {
           const processedData = checkJsonData(json);
           setData(processedData);
           setLoading(false);
-        
         } else {
           throw new Error("API returned no data");
         }
       } catch (error) {
         console.error("Not able to fetch data from siwggy :", error);
-        console.log("fetching data from local file...")
+        console.log("fetching data from local file...");
         try {
-          const localResponse = await fetch('https://raw.githubusercontent.com/adarshgajbhare/Swiggy-Clone/fa7c8f3adbb478b9bce93bf7bb3cff7af0478145/src/utils/v5.json');
+          const localResponse = await fetch(
+            "https://raw.githubusercontent.com/adarshgajbhare/Swiggy-Clone/fa7c8f3adbb478b9bce93bf7bb3cff7af0478145/src/utils/v5.json",
+          );
           if (!localResponse.ok) {
             throw new Error("GitHub file request failed");
           }
           const localJson = await localResponse.json();
-          console.log(localJson, "localJson")
-  const bannerName = localJson?.data?.cards[0]?.card?.card?.header?.title;
-  const bannerImg = localJson?.data?.cards[0]?.card?.card?.header?.imageGridCards?.info;
+          console.log(localJson, "localJson");
+          const bannerName =
+            localJson?.data?.cards[0]?.card?.card?.header?.title;
+          const bannerImg =
+            localJson?.data?.cards[0]?.card?.card?.header?.imageGridCards?.info;
 
-
-// console.log(bannerName, "bnsdg")
-// console.log(bannerImg, "sadf")
+          // console.log(bannerName, "bnsdg")
+          // console.log(bannerImg, "sadf")
 
           if (localJson) {
-
             const processedLocalData = checkJsonData(localJson);
             setData(processedLocalData);
           } else {
@@ -50,13 +51,11 @@ const useFetchData = (api) => {
         }
       } finally {
         setLoading(false);
-      
       }
     };
 
     fetchData();
   }, [api]);
-
 
   const checkJsonData = (jsonData) => {
     const allRestaurantsData = [];

@@ -10,33 +10,30 @@ const useRestaurantMenus = (resId) => {
 
   const fetchResMenu = async () => {
     try {
-    const data = await fetch(`${RES_MENU_API}/${resId}`);
-    const json = await data.json();
+      const data = await fetch(`${RES_MENU_API}/${resId}`);
+      const json = await data.json();
 
-    if(json) {
-    setResMenu(json.data);
-  }else {
-    throw new Error("API returned no data");
-  }
-} catch (error){
-  console.error("Not able to fetch data from siwggy :", error);
-  console.log("fetching data from local file...")
+      if (json) {
+        setResMenu(json.data);
+      } else {
+        throw new Error("API returned no data");
+      }
+    } catch (error) {
+      console.error("Not able to fetch data from siwggy :", error);
+      console.log("fetching data from local file...");
 
-  const localResponse = await fetch('https://raw.githubusercontent.com/adarshgajbhare/Swiggy-Clone/main/src/utils/pl.json');
+      const localResponse = await fetch(
+        "https://raw.githubusercontent.com/adarshgajbhare/Swiggy-Clone/main/src/utils/pl.json",
+      );
 
-
-  const localJson = await localResponse.json();
-  if(localJson)
-     {
-    setResMenu(localJson.data);
-  }
-  else {
-    throw new Error("Local file returned no data");
-  }
-  
-}
-
-  }
+      const localJson = await localResponse.json();
+      if (localJson) {
+        setResMenu(localJson.data);
+      } else {
+        throw new Error("Local file returned no data");
+      }
+    }
+  };
   return resMenu;
 };
 
