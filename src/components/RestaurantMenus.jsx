@@ -68,6 +68,7 @@ const RestaurantMenus = () => {
               className="inline-block w-full bg-transparent font-semibold placeholder:text-gray-500 text-gray-200 focus:outline-none"
               placeholder={`Search in ${name} in ${city}`}
             />
+            
             <IconSearch
               size={24}
               color="gray"
