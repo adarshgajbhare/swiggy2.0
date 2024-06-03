@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { CARD_IMG } from "../utils/constants";
 import { addItem, removeItem } from "../store/cartSlice";
@@ -12,13 +12,29 @@ import {
   IconStarFilled,
   IconX,
 } from "@tabler/icons-react";
+import { Button } from "@react-email/components";
 const RestaurantMenuItems = ({ items }) => {
+  const [itemCount, setItemCount] = useState(0);
+  const [addBtn, setAddBtn] = useState(false);
   const [cardView, setCardView] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Update addBtn state based on itemCount
+    if (itemCount === 0) {
+      setAddBtn(true);
+    } else if (itemCount > 0) {
+      setAddBtn(false);
+    }
+    else {
+      setAddBtn(false);
+    }
+  }, [itemCount]);
 
   const handleAddItem = (menuItem) => {
     try {
       dispatch(addItem(menuItem));
+      setItemCount((prev) => prev + 1);
     } catch (error) {
       console.error("Error in handleAddItem:", error);
     }
@@ -27,14 +43,14 @@ const RestaurantMenuItems = ({ items }) => {
   const handleCardView = () => {
     setCardView((prev) => !prev);
   };
-const  handleDecreaseItem = (menuItem) => {
-  try {
-    dispatch(removeItem(menuItem));
-  } catch (error) {
-    console.error("Error in handleDecreaseItem:", error);
-  }
-};
-
+  const handleDecreaseItem = (menuItem) => {
+    try {
+      dispatch(removeItem(menuItem));
+      itemCount >= 1 && setItemCount((prev) => prev - 1);
+    } catch (error) {
+      console.error("Error in handleDecreaseItem:", error);
+    }
+  };
 
   return (
     <div className="bg-[#050505]">
@@ -60,7 +76,7 @@ const  handleDecreaseItem = (menuItem) => {
                   />
                   <div
                     onClick={handleCardView}
-                    className="absolute right-2 top-2 grid size-10 cursor-pointer place-items-center rounded-full bg-white"
+                    className="absolute right-2 top-2 flex grid size-10 cursor-pointer flex-col place-items-center rounded-full bg-white"
                   >
                     <IconX
                       size={28}
@@ -71,30 +87,30 @@ const  handleDecreaseItem = (menuItem) => {
                   </div>
                 </div>
                 <div className="p-3">
-                  <div className="text-3xl font-bold text-gray-50">
+                  <div className="text-xl font-bold text-gray-50">
                     {menuItem.card.info.name}
                   </div>
                   <div className="flex items-baseline gap-2">
-                    <p className="mt-2 text-3xl font-bold text-gray-500">
+                    <p className="mt-2 text-lg font-bold text-gray-500">
                       ₹{priceValue}
                     </p>
-                    <p className="flex items-baseline gap-1 text-xl text-gray-400 md:w-2/3 lg:w-2/3 xl:w-2/3 2xl:w-2/3">
+                    <p className="flex items-baseline gap-1 text-base text-gray-400 md:w-2/3 lg:w-2/3 xl:w-2/3 2xl:w-2/3">
                       <IconStarFilled
-                        size={20}
+                        size={16}
                         color="#2d6a4f"
                         className="relative top-[2px]"
                       />
-                      <span className="text-xl font-bold text-green-600">
+                      <span className="text-base font-bold text-green-600">
                         3.8
                       </span>
-                      <span className="text-base">(178)</span>
+                      <span className="text-xs">(178)</span>
                     </p>
                   </div>
-                  <p className="mt-2 text-2xl font-bold text-gray-500">
+                  <p className="mt-2 line-clamp-3 max-w-[25ch] text-base font-bold text-gray-500">
                     {menuItem.card.info.description}
                   </p>
                   <button
-                    className="my-3 w-full rounded-xl bg-green-600 py-3 text-xl font-bold"
+                    className="my-3 rounded-lg bg-green-600 px-12 py-3 text-xl font-bold"
                     onClick={() => handleAddItem(menuItem)}
                   >
                     ADD
@@ -144,34 +160,43 @@ const  handleDecreaseItem = (menuItem) => {
                   className="size-full rounded-md object-cover object-center"
                   src={CARD_IMG + menuItem.card.info.imageId}
                 />
-                <div className="absolute -bottom-4 left-3 flex w-4/5 items-center justify-between rounded-lg bg-[#202020] px-1.5 py-1 lg:left-6 lg:px-3 lg:py-3 xl:left-6 xl:px-3 xl:py-3 2xl:left-6 2xl:px-3 2xl:py-2">
+
+                {addBtn ? (
                   <button
-                    className="rounded-md bg-transparent font-bold text-white disabled:cursor-not-allowed disabled:bg-orange-500/50"
-                     onClick={() => handleDecreaseItem(menuItem)}
-                  >
-                    <IconMinus
-                      size={16}
-                      color="#2d6a4f"
-                      strokeWidth={3}
-                      className="scale-125"
-                    />
+                  onClick={() => handleAddItem(menuItem)}
+                  className="absolute -bottom-4 left-3 flex w-4/5 items-center justify-between rounded-lg bg-green-600 px-6 py-1 lg:left-6 lg:px-3 lg:py-3 xl:left-6 xl:px-3 xl:py-3 2xl:left-6 2xl:px-3 2xl:py-2 text-center">
+                    ADD
                   </button>
-                  <p className="mx-1 inline-block text-base font-bold text-green-500">
-                    2
-                  </p>
-                  <button
-                    className="rounded-md bg-transparent font-bold text-white"
-                   //  onClick={() => handleIncreaseItem(menuItem)}
-                  >
-                    <IconPlus
-                      size={16}
-                      color="#2d6a4f"
-                      strokeWidth={3}
-                      className="scale-125"
-                      onClick={() => handleAddItem(menuItem)}
-                    />
-                  </button>
-                </div>
+                ) : (
+                  <div className="absolute -bottom-4 left-3 flex w-4/5 items-center justify-between rounded-lg bg-[#202020] px-1.5 py-1 lg:left-6 lg:px-3 lg:py-3 xl:left-6 xl:px-3 xl:py-3 2xl:left-6 2xl:px-3 2xl:py-2">
+                    <button
+                      className="rounded-md bg-transparent font-bold text-white disabled:cursor-not-allowed"
+                      onClick={() => handleDecreaseItem(menuItem)}
+                    >
+                      <IconMinus
+                        size={16}
+                        color="#2d6a4f"
+                        strokeWidth={3}
+                        className="scale-125"
+                      />
+                    </button>
+                    <p className="mx-1 inline-block text-base font-bold text-green-500">
+                      {itemCount}
+                    </p>
+                    <button
+                      className="rounded-md bg-transparent font-bold text-white"
+                      //  onClick={() => handleIncreaseItem(menuItem)}
+                    >
+                      <IconPlus
+                        size={16}
+                        color="#2d6a4f"
+                        strokeWidth={3}
+                        className="scale-125"
+                        onClick={() => handleAddItem(menuItem)}
+                      />
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           );
