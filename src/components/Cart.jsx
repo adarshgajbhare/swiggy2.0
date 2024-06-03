@@ -262,12 +262,14 @@ const Cart = () => {
           <div className="flex items-center justify-between border-t border-dashed border-white/10 px-4 py-4 text-white">
             Add more items
             <span className="grid size-7 place-items-center rounded-full border">
+             <NavLink to={"/home"} >
               <IconPlus
                 size={14}
                 strokeWidth={2}
                 color="white"
                 className="inline-block"
               />
+              </NavLink>
             </span>
           </div>
           <div className="flex items-center justify-between border-t border-dashed border-white/10 px-4 py-4 text-white">
