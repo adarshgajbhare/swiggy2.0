@@ -46,11 +46,10 @@ const App = () => {
         <SearchProvider>
           <UserName.Provider value={{ loggedUser: name, setName }}>
             <div className="app -z-10">
-              {location.pathname == ("/" && "/cart") && (
+              {location.pathname == ( "/home") && (
                 <Header onAPIKeyChange={handleAPIKeyChange} />
               )}
               <Outlet context={api} />
-              {/* <Footer /> */}
             </div>
           </UserName.Provider>
         </SearchProvider>

@@ -1,21 +1,23 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-unsafe-optional-chaining */
 import React, { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import { CARD_IMG } from "../utils/constants";
 import useRestaurantMenus from "../utils/useRestaurantMenus";
 import RestaurantMenuCategory from "./RestaurantMenuCategory";
 import {
   IconChevronLeft,
-  IconPoint,
-  IconPointFilled,
   IconSearch,
   IconStarFilled,
 } from "@tabler/icons-react";
 import SearchContext from "../utils/SearchContext";
+
 const RestaurantMenus = () => {
   const [isExpanded, setExpanded] = useState(false);
   const [buttonText, setButtonText] = useState("ADD");
+ 
   const btnChange = () => {
     setButtonText("DONE");
   };
@@ -54,11 +56,13 @@ const RestaurantMenus = () => {
       <div className="relative mx-auto w-full lg:w-1/2 xl:w-1/2 2xl:w-1/2">
         <div className="fixed left-0 right-0 top-0 z-50 lg:w-3/4 xl:w-3/4 2xl:w-3/4 lg:left-1/2 lg:-translate-x-1/2 xl:left-1/2 xl:-translate-x-1/2 2xl:left-1/2 2xl:-translate-x-1/2 rounded-b-3xl border-b border-white/10 bg-black/70 py-2 filter backdrop-blur-lg">
           <div className="m-2 flex items-center rounded-full bg-[#202020] p-2.5">
+           <NavLink to={"/home"} >
             <IconChevronLeft
               size={24}
               color="gray"
               className="mr-1 inline-block scale-150"
-            />
+            /> 
+            </NavLink> 
             <input
               type="text"
               className="inline-block w-full bg-transparent font-semibold placeholder:text-gray-500 text-gray-200 focus:outline-none"

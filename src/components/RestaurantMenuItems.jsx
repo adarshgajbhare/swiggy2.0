@@ -1,8 +1,8 @@
-import React, { createContext, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { CARD_IMG } from "../utils/constants";
-import { addItem } from "../store/cartSlice";
-import { ToastContainer, toast } from "react-toastify";
+import { addItem, removeItem } from "../store/cartSlice";
 import "react-toastify/dist/ReactToastify.css";
 import {
   IconChevronRight,
@@ -27,6 +27,14 @@ const RestaurantMenuItems = ({ items }) => {
   const handleCardView = () => {
     setCardView((prev) => !prev);
   };
+const  handleDecreaseItem = (menuItem) => {
+  try {
+    dispatch(removeItem(menuItem));
+  } catch (error) {
+    console.error("Error in handleDecreaseItem:", error);
+  }
+};
+
 
   return (
     <div className="bg-[#050505]">
@@ -67,25 +75,28 @@ const RestaurantMenuItems = ({ items }) => {
                     {menuItem.card.info.name}
                   </div>
                   <div className="flex items-baseline gap-2">
-                
                     <p className="mt-2 text-3xl font-bold text-gray-500">
                       ₹{priceValue}
                     </p>
                     <p className="flex items-baseline gap-1 text-xl text-gray-400 md:w-2/3 lg:w-2/3 xl:w-2/3 2xl:w-2/3">
-                     
                       <IconStarFilled
                         size={20}
                         color="#2d6a4f"
                         className="relative top-[2px]"
                       />
-                      <span className="font-bold text-xl text-green-600">3.8</span>
+                      <span className="text-xl font-bold text-green-600">
+                        3.8
+                      </span>
                       <span className="text-base">(178)</span>
                     </p>
                   </div>
                   <p className="mt-2 text-2xl font-bold text-gray-500">
                     {menuItem.card.info.description}
                   </p>
-                  <button className="my-3 w-full rounded-xl bg-green-600 py-3 text-xl font-bold">
+                  <button
+                    className="my-3 w-full rounded-xl bg-green-600 py-3 text-xl font-bold"
+                    onClick={() => handleAddItem(menuItem)}
+                  >
                     ADD
                   </button>
                 </div>
@@ -136,7 +147,7 @@ const RestaurantMenuItems = ({ items }) => {
                 <div className="absolute -bottom-4 left-3 flex w-4/5 items-center justify-between rounded-lg bg-[#202020] px-1.5 py-1 lg:left-6 lg:px-3 lg:py-3 xl:left-6 xl:px-3 xl:py-3 2xl:left-6 2xl:px-3 2xl:py-2">
                   <button
                     className="rounded-md bg-transparent font-bold text-white disabled:cursor-not-allowed disabled:bg-orange-500/50"
-                    // onClick={() => handleDecreaseItem(menuItem)}
+                     onClick={() => handleDecreaseItem(menuItem)}
                   >
                     <IconMinus
                       size={16}
@@ -150,13 +161,14 @@ const RestaurantMenuItems = ({ items }) => {
                   </p>
                   <button
                     className="rounded-md bg-transparent font-bold text-white"
-                    // onClick={() => handleIncreaseItem(menuItem)}
+                   //  onClick={() => handleIncreaseItem(menuItem)}
                   >
                     <IconPlus
                       size={16}
                       color="#2d6a4f"
                       strokeWidth={3}
                       className="scale-125"
+                      onClick={() => handleAddItem(menuItem)}
                     />
                   </button>
                 </div>

@@ -6,7 +6,7 @@ import {
   increaseItemCart,
   removeItem,
 } from "../store/cartSlice";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   IconArrowLeft,
   IconMinus,
@@ -168,12 +168,13 @@ const Cart = () => {
       <div className="min-h-dvh overflow-hidden bg-[#101010] lg:hidden xl:hidden 2xl:hidden">
         <div className="fixed left-0 right-0 top-0 flex flex-col items-center gap-3 rounded-b-3xl border-b border-white/20 bg-gradient-to-b from-transparent to-black filter backdrop-blur-xl z-50  pt-5">
           <div className="flex w-full items-center">
-            <IconArrowLeft
+          <NavLink to={"/home"} > <IconArrowLeft
               size={30}
               strokeWidth={2}
               color="white"
               className="mx-2 inline-block scale-150"
             />
+          </NavLink>
             <div className="inline-flex w-full gap-2 flex-col">
               <p className="ml-2  inline-block text-base/3 font-bold text-white">
                 55-60 mins
