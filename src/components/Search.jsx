@@ -56,9 +56,9 @@ const Search = ({ resData, setFilteredListOfRestaurant }) => {
     <div className="mr-12 mt-24 flex items-center justify-between">
       <button
         onClick={handleSort}
-        className="back absolute -top-[725px] right-3 mb-4 mr-0 inline-flex items-center rounded-3xl border border-white/20 bg-[#252525]/10 px-4 py-1.5 filter backdrop-blur-md"
+        className="back absolute -top-[685px] right-4 mb-4 mr-0 inline-flex items-center rounded-3xl border border-white/20 bg-[#252525]/10 px-4 py-1 filter backdrop-blur-md"
       >
-        <span className="text-lg font-bold text-gray-50">Sort by</span>
+        <span className="text-base/none font-medium text-gray-50">Sort by</span>
         <IconChevronDown
           size={22}
           strokeWidth={3}

@@ -13,6 +13,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firbase/firbase";
 import SearchContext from "../utils/SearchContext";
 import { getCityAPI } from "../utils/constants";
+import { set } from "firebase/database";
 
 const Header = ({ onAPIKeyChange }) => {
   const naviator = useNavigate();
@@ -50,6 +51,13 @@ const Header = ({ onAPIKeyChange }) => {
       });
   };
 
+  const menuItems = [
+    { to: "/home", title: "Home", text: "Home" },
+    { to: "/about", title: "About", text: "About" },
+    { to: "/contact", title: "Contact", text: "Contact" },
+    { to: "/cart", title: "Cart", text: "Cart", isCart: true },
+  ];
+
   const sortingOptions = [
     { id: 1, label: "Profile", value: "profile" },
     { id: 2, label: "Order", value: "order" },
@@ -70,8 +78,7 @@ const Header = ({ onAPIKeyChange }) => {
   };
 
   const handleLocationBar = () => {
-   
-    setIsLocationBarVisible((prev) => !prev)
+    setIsLocationBarVisible((prev) => !prev);
   };
 
   useEffect(() => {
@@ -108,14 +115,15 @@ const Header = ({ onAPIKeyChange }) => {
 
   return (
     <>
-      <div className="items-center gap-3 bg-black py-3 pt-5">
-        <div className="flex items-center px-3">
-          <div className="flex w-full items-center">
+      <div className="bg-black py-3 pt-5">
+        <div className="flex items-center justify-between border-b border-white/20 px-4 pb-4 md:px-8 lg:px-8 xl:px-8 2xl:px-8">
+          <div className="flex items-center gap-4">
+            <div className="hidden bg-gradient-to-r from-orange-300 via-orange-500 to-orange-600 bg-clip-text text-2xl font-black tracking-tight text-transparent md:block lg:block xl:block 2xl:block">
+              EatNow{" "}
+            </div>
             <div
-              className="inline-flex w-full cursor-pointer flex-col gap-2 "
-              onClick={() => {
-                handleLocationBar();
-              }}
+              className="inline-flex w-fit cursor-pointer flex-col gap-2 border"
+              onClick={() => setIsLocationBarVisible(!isLocationBarVisible)}
             >
               <p className="inline-block text-base/3 font-bold text-white">
                 <IconHomeFilled
@@ -129,35 +137,30 @@ const Header = ({ onAPIKeyChange }) => {
               <p className="ml-2 line-clamp-1 inline-block max-w-[30ch] text-balance text-sm/4 font-medium text-gray-50">
                 D - 33, 2nd Floor, Noida...
               </p>
-
               <div
-                className={`2xl:1/4 fixed left-0 top-0 z-[999] h-screen w-full bg-[#050505] text-[#0008] md:w-1/2 lg:w-1/4 xl:w-1/4 ${
-                  isLocationBarVisible ? "" : "-translate-x-[100%]"
-                } rounded-r-lg transition-all duration-500 ease-in-out`}
+                className={`2xl:1/4 fixed left-0 top-0 z-[999] ${isLocationBarVisible ? "translate-x-0" : "-translate-x-full"} h-screen w-full rounded-r-lg bg-[#050505] text-[#0008] transition-all duration-500 ease-in-out md:w-1/2 lg:w-1/4 xl:w-1/4`}
               >
                 <div
-                  className="absolute right-2 top-7 w-fit cursor-pointer rounded-full bg-[#202020] p-3 " >
-                  <IconX color="gray" size={26} strokeWidth={3}
-                  onClick={()=>{handleLocationBar}}  />
+                  onClick={() => setIsLocationBarVisible(!isLocationBarVisible)}
+                  className="absolute right-2 top-7 grid size-8 w-fit cursor-pointer place-items-center rounded-full bg-[#202020] px-2"
+                >
+                  <IconX color="gray" size={20} strokeWidth={3} />
                 </div>
-
-                <div className="relative right-0 ml-6 mt-20 flex w-[80%] items-center overflow-hidden rounded-full
-                 border border-black/50 bg-[#212529] px-5 pb-2 pt-3">
+                <div className="relative right-0 ml-6 mt-20 flex w-[80%] items-center overflow-hidden rounded-full border border-black/50 bg-[#212529] px-5 pb-2 pt-3">
                   <input
                     placeholder="Enter your city"
-                    className="w-full bg-transparent placeholder:text-xl placeholder:font-bold placeholder:text-gray-500 focus:outline-none"
+                    className="w-full bg-transparent text-white placeholder:text-xl placeholder:font-bold placeholder:text-gray-500 focus:outline-none"
                     type="text"
                     id="cityInput"
                     value={cityName}
-                    
-                    onChange={(e) => {setCityName(e.target.value),setIsLocationBarVisible(isLocationBarVisible)}
-                      
-                    }
+                    onChange={(e) => {
+                      setCityName(e.target.value);
+                    }}
                   />
                   <IconSearch
-                    className="border bg-rose-700"
+                    className=""
                     onClick={() => {
-                       setIsLocationBarVisible(!isLocationBarVisible)
+                      handleLocationBar;
                       setLocationName(cityName);
                       onAPIKeyChange(
                         getCityAPI(position.latitude, position.longitude),
@@ -168,8 +171,7 @@ const Header = ({ onAPIKeyChange }) => {
                     strokeWidth={3}
                   />
                 </div>
-
-                <ul className="text-2xl font-bold leading-loose">
+                <ul className="text-3xl font-bold leading-loose">
                   <Link to="home">
                     <p
                       onClick={() => {
@@ -231,7 +233,7 @@ const Header = ({ onAPIKeyChange }) => {
                         ).style.transitionDuration = "1s";
                         onAPIKeyChange(getCityAPI(19.1485289, 77.3191471));
                         setLocationName("Nanded");
-                        handleLocationBar;;
+                        handleLocationBar;
                       }}
                     >
                       <Link to="home">
@@ -254,7 +256,7 @@ const Header = ({ onAPIKeyChange }) => {
                           getCityAPI(28.7040592, 77.10249019999999),
                         );
                         setLocationName("Delhi");
-                        handleLocationBar;;
+                        handleLocationBar;
                       }}
                     >
                       <Link to="home">
@@ -275,7 +277,7 @@ const Header = ({ onAPIKeyChange }) => {
                         ).style.transitionDuration = "1s";
                         onAPIKeyChange(getCityAPI(17.385044, 78.486671));
                         setLocationName("Hyderabad");
-                        handleLocationBar;;
+                        handleLocationBar;
                       }}
                     >
                       <Link to="home">
@@ -289,68 +291,90 @@ const Header = ({ onAPIKeyChange }) => {
               </div>
             </div>
           </div>
-          <NavLink to={"/home"}>
-            <IconUserCircle
-              size={28}
-              strokeWidth={2}
-              color="white"
-              className="mx-2 inline-block scale-150"
-              onClick={handleOpenMenu}
-            />
-          </NavLink>
+
+          <div className="flex items-center gap-4">
+            <div className="hidden items-center rounded-full border border-white/25 bg-transparent px-4 py-1.5 md:flex lg:flex xl:flex 2xl:flex">
+              <input
+                type="text"
+                className="inline-block w-full bg-transparent text-base/none text-gray-200 placeholder:text-gray-200 focus:outline-none"
+                placeholder={`Search restaurants near you`}
+                value={searchText}
+                onChange={(e) => {
+                  setSearchText(e.target.value);
+                  setSearch(e.target.value);
+                }}
+              />
+              <IconSearch
+                size={24}
+                color="white"
+                className="ml-auto inline-block cursor-pointer"
+              />
+            </div>
+
+            <div>
+              <IconMenu2
+                size={28}
+                strokeWidth={2.5}
+                color="white"
+                className="inline-block cursor-pointer"
+                onClick={handleOpenMenu}
+              />
+            </div>
+          </div>
+
           <div
             className={`${
               menuOpen ? "translate-x-0" : "translate-x-[100%]"
-            } fixed inset-0 z-[99999] size-full bg-[#050505] transition-all duration-500 ease-in-out`}
+            } fixed bottom-0 right-0 top-0 z-[99999] grid size-full w-full place-items-center rounded-l-3xl border border-white/30 bg-[#050505]/75 filter backdrop-blur-md transition-all duration-500 ease-in-out md:w-2/3 lg:w-1/4 xl:w-1/4 2xl:w-1/4`}
           >
-            <IconX
-              size={30}
-              strokeWidth={3}
-              color="white"
-              className="absolute right-4 top-4"
+            <div
               onClick={handleOpenMenu}
-            />
+              className="absolute right-3 top-5 grid size-8 cursor-pointer place-items-center rounded-full bg-gray-700"
+            >
+              <IconX size={20} strokeWidth={3} color="white" className="" />
+            </div>
 
-            <div className="mt-16 flex flex-col gap-8 px-6 text-xl font-bold md:hidden lg:hidden xl:hidden 2xl:hidden">
-              <Link
-                to="/home"
-                title="home"
-                className="text-white"
-                onClick={handleOpenMenu}
-              >
-                <span className="my-3 text-4xl font-bold text-white">
-                  {" "}
-                  Home
-                </span>
-              </Link>
-              <Link
-                to="/about"
-                title="about"
-                className="my-3 text-4xl font-bold text-white"
-                onClick={handleOpenMenu}
-              >
-                About
-              </Link>
-              <Link
-                to="/contact"
-                title="contact"
-                className="my-3 text-4xl font-bold text-white"
-                onClick={handleOpenMenu}
-              >
-                Contact
-              </Link>
+            <div className="flex w-full flex-col gap-12 pl-10 font-bold">
+              {menuItems.map((item) =>
+                item.isCart ? (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    title={item.title}
+                    className="group border-b border-white/15 pb-3 text-3xl font-bold text-white"
+                    onClick={handleOpenMenu}
+                  >
+                    <div className="flex items-center">
+                      <span className="mr-2">{item.text}</span>
+                      <span className="inline-block grid size-11 place-items-center rounded-full bg-[#252525]">
+                        <span className="text-3xl">{ItemCount.length}</span>
+                      </span>
+                    </div>
+                  </Link>
+                ) : (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    title={item.title}
+                    className="border-b border-white/15 pb-3 text-3xl font-bold text-white"
+                    onClick={handleOpenMenu}
+                  >
+                    {item.text}
+                  </Link>
+                ),
+              )}
+
               <p
                 onClick={handleSort}
                 className="relative flex cursor-pointer items-center gap-1"
               >
-                <IconUserCircle
-                  size={46}
-                  strokeWidth={2}
-                  color="white"
-                  className="inline-block"
-                />
-                <span className="my-3 text-4xl font-bold text-white">
-                  {" "}
+                <span className="flex w-full items-center gap-1 border-b border-white/15 pb-2 text-3xl font-bold text-white">
+                  <IconUserCircle
+                    size={28}
+                    strokeWidth={2.5}
+                    color="white"
+                    className="relative top-1 inline-block"
+                  />
                   {user?.displayName}
                 </span>
                 <div
@@ -369,24 +393,11 @@ const Header = ({ onAPIKeyChange }) => {
                   ))}
                 </div>
               </p>
-              <Link
-                to="/cart"
-                title="cart"
-                className="group my-3 text-4xl font-bold text-white"
-                onClick={handleOpenMenu}
-              >
-                <div className="flex items-center">
-                  <span className="mr-2">Cart</span>
-                  <span className="inline-block grid size-11 place-items-center rounded-full bg-[#252525]">
-                    <span className="text-3xl">{ItemCount.length}</span>
-                  </span>
-                </div>
-              </Link>
             </div>
           </div>
         </div>
 
-        <div className="m-3 flex items-center rounded-xl border border-white/20 bg-transparent px-4 py-3">
+        <div className="m-3 flex items-center rounded-xl border border-white bg-transparent px-4 py-3 md:hidden lg:hidden xl:hidden 2xl:hidden">
           <input
             type="text"
             className="inline-block w-full bg-transparent text-xl font-semibold text-gray-200 placeholder:text-gray-200 focus:outline-none"
