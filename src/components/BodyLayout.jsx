@@ -84,25 +84,6 @@ const BodyLayout = () => {
         </div>
         <div className="relative mb-8 mt-16 flex w-full items-center px-2 text-2xl font-bold text-white lg:ml-28 lg:text-3xl md:xl:text-3xl xl:ml-28 xl:text-3xl 2xl:ml-28">
           <span className="inline-block">Top restaurants near you</span>
-
-          {/* <div className="ml-auto flex items-center gap-2">
-            <span className="inline-block size-10 grid place-items-center  bg-gray-100 rounded-full">
-              <IconArrowLeft
-                size={26}
-                strokeWidth={2}
-                color="black"
-                className="inline-block"
-              />
-            </span>
-            <span className="inline-block size-10 grid place-items-center  bg-gray-100 rounded-full">
-              <IconArrowRight
-                size={26}
-                strokeWidth={2}
-                color="black"
-                className="inline-block"
-              />
-            </span>
-          </div> */}
         </div>
 
         <div className="relative mx-auto mt-4 flex flex-nowrap gap-6 overflow-x-scroll whitespace-nowrap rounded-lg px-2 lg:w-[85%] xl:w-[85%] 2xl:w-[85%]">
