@@ -122,7 +122,7 @@ const Header = ({ onAPIKeyChange }) => {
               EatNow{" "}
             </div>
             <div
-              className="inline-flex w-fit cursor-pointer flex-col gap-2 border"
+              className="inline-flex w-fit cursor-pointer flex-col gap-2 "
               onClick={() => setIsLocationBarVisible(!isLocationBarVisible)}
             >
               <p className="inline-block text-base/3 font-bold text-white">

@@ -139,17 +139,14 @@ const Login = () => {
         </div>
       </div>
       <ToastContainer
+        theme="dark"
         position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
+        hideProgressBar={true}
+        pauseOnFocusLossdraggable
+        rtl={false}
         newestOnTop
         closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition="Flip"
+        autoClose={5000}
       />
       {notify()}
     </>
