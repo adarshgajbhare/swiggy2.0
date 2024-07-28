@@ -11,6 +11,13 @@
 11. 
 
 
+
+
+
+
+
+
+
       <nav className="fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-between border-b border-white/15 bg-transparent px-2 py-3">
         <div className="mr-auto flex w-full items-center justify-between gap-6 md:justify-center lg:justify-center xl:justify-center 2xl:justify-center">
           <div
