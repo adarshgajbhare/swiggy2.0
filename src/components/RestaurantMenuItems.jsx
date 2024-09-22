@@ -12,51 +12,49 @@ import {
   IconStarFilled,
   IconX,
 } from "@tabler/icons-react";
-import { Button } from "@react-email/components";
+
 const RestaurantMenuItems = ({ items }) => {
-  const [itemCount, setItemCount] = useState(0);
-  const [addBtn, setAddBtn] = useState(false);
-  const [cardView, setCardView] = useState(false);
+  const [itemCounts, setItemCounts] = useState({});
+  const [cardView, setCardView] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Update addBtn state based on itemCount
-    if (itemCount === 0) {
-      setAddBtn(true);
-    } else if (itemCount > 0) {
-      setAddBtn(false);
-    }
-    else {
-      setAddBtn(false);
-    }
-  }, [itemCount]);
+    // Initialize itemCounts for all items
+    const initialCounts = {};
+    items.forEach((item) => {
+      initialCounts[item.card.info.id] = 0;
+    });
+    setItemCounts(initialCounts);
+  }, [items]);
 
   const handleAddItem = (menuItem) => {
-    try {
-      dispatch(addItem(menuItem));
-      setItemCount((prev) => prev + 1);
-    } catch (error) {
-      console.error("Error in handleAddItem:", error);
-    }
+    const id = menuItem.card.info.id;
+    setItemCounts((prev) => ({
+      ...prev,
+      [id]: (prev[id] || 0) + 1,
+    }));
+    dispatch(addItem(menuItem));
   };
 
-  const handleCardView = () => {
-    setCardView((prev) => !prev);
-  };
   const handleDecreaseItem = (menuItem) => {
-    try {
-      dispatch(removeItem(menuItem));
-      itemCount >= 1 && setItemCount((prev) => prev - 1);
-    } catch (error) {
-      console.error("Error in handleDecreaseItem:", error);
-    }
+    const id = menuItem.card.info.id;
+    setItemCounts((prev) => ({
+      ...prev,
+      [id]: Math.max((prev[id] || 0) - 1, 0),
+    }));
+    dispatch(removeItem(menuItem));
+  };
+
+  const handleCardView = (id) => {
+    setCardView((prev) => (prev === id ? null : id));
   };
 
   return (
     <div className="bg-[#050505]">
       {items &&
-        items.map((menuItem) => {
-          // Calculate the price value
+        items.map((menuItem, index) => {
+          const id = menuItem.card.info.id;
+          const count = itemCounts[id] || 0;
           const priceValue =
             menuItem.card.info.price / 100 ||
             menuItem.card.info.defaultPrice / 100;
@@ -67,7 +65,7 @@ const RestaurantMenuItems = ({ items }) => {
               className="mx-3 my-6 flex items-center justify-between rounded-xl bg-[#101010] py-6 text-left"
             >
               <div
-                className={`${cardView ? "translate-y-0" : "translate-y-[100%]"} fixed bottom-0 left-0 right-0 overflow-hidden rounded-t-3xl border-t border-white/50 bg-black/50 filter backdrop-blur-3xl transition-all duration-500 ease-in-out`}
+                className={`${cardView === id ? "translate-y-0" : "translate-y-[100%]"} fixed bottom-0 left-0 right-0 overflow-hidden rounded-t-3xl border-t border-white/50 bg-black/50 filter backdrop-blur-3xl transition-all duration-500 ease-in-out`}
               >
                 <div className="relative h-72 overflow-hidden">
                   <img
@@ -75,7 +73,7 @@ const RestaurantMenuItems = ({ items }) => {
                     src={CARD_IMG + menuItem.card.info.imageId}
                   />
                   <div
-                    onClick={handleCardView}
+                    onClick={() => handleCardView(null)}
                     className="absolute right-2 top-2 flex grid size-10 cursor-pointer flex-col place-items-center rounded-full bg-white"
                   >
                     <IconX
@@ -110,7 +108,7 @@ const RestaurantMenuItems = ({ items }) => {
                     {menuItem.card.info.description}
                   </p>
                   <button
-                    className="my-3 rounded-lg bg-green-600 px-12 py-3 text-xl font-bold"
+                    className="bold my-3 justify-center rounded-lg bg-green-600 px-12 py-3 text-2xl font-bold text-red-800"
                     onClick={() => handleAddItem(menuItem)}
                   >
                     ADD
@@ -137,7 +135,6 @@ const RestaurantMenuItems = ({ items }) => {
                     ₹{priceValue}
                   </p>
                   <p className="ml-7 flex items-baseline gap-1 text-base text-gray-400 md:w-2/3 lg:w-2/3 xl:w-2/3 2xl:w-2/3">
-                    {/* {menuItem.card.info.description} */}
                     <IconStarFilled
                       size={15}
                       color="#2d6a4f"
@@ -147,7 +144,7 @@ const RestaurantMenuItems = ({ items }) => {
                     <span className="text-xs">(178)</span>
                   </p>
                   <p
-                    onClick={handleCardView}
+                    onClick={() => handleCardView(id)}
                     className="ml-6 mt-2 flex w-fit cursor-pointer items-center rounded-full border border-white/20 pb-[1px] pl-2 pr-[1px] pt-[3px] text-xs text-gray-400"
                   >
                     More Details <IconChevronRight size={16} color="gray" />
@@ -155,16 +152,17 @@ const RestaurantMenuItems = ({ items }) => {
                 </div>
               </div>
 
-              <div className="overflow-hdden relative mr-4 aspect-square h-28 w-auto rounded-lg md:h-52 lg:h-52 xl:h-52 2xl:h-52">
+              <div className="overflow-hidden relative mr-4 aspect-square h-28 w-auto rounded-lg md:h-52 lg:h-52 xl:h-52 2xl:h-52">
                 <img
                   className="size-full rounded-md object-cover object-center"
                   src={CARD_IMG + menuItem.card.info.imageId}
                 />
 
-                {addBtn ? (
+                {count === 0 ? (
                   <button
-                  onClick={() => handleAddItem(menuItem)}
-                  className="absolute -bottom-4 left-3 flex w-4/5 items-center justify-between rounded-lg bg-green-600 px-6 py-1 lg:left-6 lg:px-3 lg:py-3 xl:left-6 xl:px-3 xl:py-3 2xl:left-6 2xl:px-3 2xl:py-2 text-center">
+                    onClick={() => handleAddItem(menuItem)}
+                    className="absolute -bottom-4 left-3 flex w-4/5 items-center justify-center rounded-lg bg-green-600 px-6 py-1 text-center lg:left-6 lg:px-3 lg:py-3 xl:left-6 xl:px-3 xl:py-3 2xl:left-6 2xl:px-3 2xl:py-2"
+                  >
                     ADD
                   </button>
                 ) : (
@@ -181,18 +179,17 @@ const RestaurantMenuItems = ({ items }) => {
                       />
                     </button>
                     <p className="mx-1 inline-block text-base font-bold text-green-500">
-                      {itemCount}
+                      {count}
                     </p>
                     <button
                       className="rounded-md bg-transparent font-bold text-white"
-                      //  onClick={() => handleIncreaseItem(menuItem)}
+                      onClick={() => handleAddItem(menuItem)}
                     >
                       <IconPlus
                         size={16}
                         color="#2d6a4f"
                         strokeWidth={3}
                         className="scale-125"
-                        onClick={() => handleAddItem(menuItem)}
                       />
                     </button>
                   </div>
