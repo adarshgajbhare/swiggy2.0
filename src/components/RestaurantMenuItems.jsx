@@ -152,7 +152,7 @@ const RestaurantMenuItems = ({ items }) => {
                 </div>
               </div>
 
-              <div className="overflow-hidden relative mr-4 aspect-square h-28 w-auto rounded-lg md:h-52 lg:h-52 xl:h-52 2xl:h-52">
+              <div className="relative mr-4 aspect-square h-28 w-auto rounded-lg md:h-52 lg:h-52 xl:h-52 2xl:h-52">
                 <img
                   className="size-full rounded-md object-cover object-center"
                   src={CARD_IMG + menuItem.card.info.imageId}
