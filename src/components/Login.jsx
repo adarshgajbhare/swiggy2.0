@@ -20,7 +20,7 @@ const Login = () => {
 
   const notify = () =>
     toast(
-      "Please you access-control-allow-origin extension to see the real time data from Swiggy..",
+      "Please use access-control-allow-origin extension to see the real time data from Swiggy..",
     );
   const handleAuth = async () => {
     if (isSignUp) {
